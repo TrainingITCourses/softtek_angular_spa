@@ -32,7 +32,7 @@ Desarrollar una aplicación web con **Angular Moderno** que permita visualizar u
 
 4. **Filtrado por tipo de activo**
 
-   - Permitir al usuario filtrar entre: efectivo, criptomonedas y acciones (`cash`, `crypto`, `stoks`). y actualizar valor en consecuencia.
+   - Permitir al usuario filtrar entre: efectivo, criptomonedas y acciones (`cash`, `crypto`, `stocks`). y actualizar valor en consecuencia.
 
 5. **Actualización**
 
@@ -49,7 +49,7 @@ Desarrollar una aplicación web con **Angular Moderno** que permita visualizar u
 export type Asset = {
   id: number;
   name: string;
-  type: "cash" | "crypto" | "stoks";
+  type: "cash" | "crypto" | "stocks";
   symbol: string;
   quantity: number;
 };
@@ -92,7 +92,7 @@ export type Rate = {
 4. Se calcula el valor total del portfolio y se muestra.
 5. El usuario puede:
    - Filtrar activos por tipo
-   - Actualizar precios para recalcular el valor total
+   - Actualizar precios para re-calcular el valor total
 
 ## Rutas
 
