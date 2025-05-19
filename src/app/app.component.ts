@@ -1,16 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './core/header.component';
+import { LogService } from './shared/log/log.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, HeaderComponent],
   template: `
-    <h1>Welcome to {{title}}!</h1>
-
+    <app-header />
+    <h1>Welcome to {{ title }}!</h1>
     <router-outlet />
   `,
-  styles: [],
 })
 export class AppComponent {
-  title = 'softtek-angular-spa';
+  protected title = 'softtek-angular-spa';
+  private readonly logService: LogService = inject(LogService);
+  constructor( ) {
+    this.logService.info('AppComponent constructor');
+  }
 }
