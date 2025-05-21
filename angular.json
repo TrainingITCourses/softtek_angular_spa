@@ -9,6 +9,7 @@
         "@schematics/angular:component": {
           "inlineTemplate": true,
           "inlineStyle": true,
+          "flat": true,
           "skipTests": true
         },
         "@schematics/angular:class": {
@@ -99,6 +100,6 @@
     }
   },
   "cli": {
-    "analytics": true
+    "analytics": "4de6dedc-ae56-4755-ba9b-d65ab4c2907f"
   }
 }
