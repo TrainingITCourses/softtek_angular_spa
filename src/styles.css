@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+/* Minimal CSS reset */
+:root {
+  --pico-font-family: "Fira Mono", Consolas, monospace;
+  --pico-font-family-emoji: "Major Mono Display", Consolas, monospace;
+  --pico-font-family-sans-serif: Tomorrow, Roboto, Helvetica, Arial, sans-serif;
+  --pico-font-family-monospace: "Fira Mono", Consolas, monospace;
+  --pico-border-radius: 0rem;
+  background-color: var(--pico-background-color);
+}
+
+body {
+  color: var(--pico-color);
+  background-color: var(--pico-background-color);
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+  font-family: var(--pico-font-family);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+  font-family: var(--pico-font-family-sans-serif);
+}
+
+h1 {
+  --pico-font-size: 2.5rem;
+  --pico-line-height: 1.5;
+  --pico-typography-spacing-top: 3.5rem;
+}
+
+h2 {
+  --pico-font-size: 2rem;
+  --pico-line-height: 1.125;
+  --pico-typography-spacing-top: 3rem;
+}
+
+/* Logo */
+header nav ul li strong {
+  font-family: var(--pico-font-family-emoji);
+}
+
+span {
+  padding-right: 1%;
+}
