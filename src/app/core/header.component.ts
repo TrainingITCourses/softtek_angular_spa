@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+import { ThemeToggleComponent } from "./theme-toggle.component";
 
 @Component({
-  selector: 'app-header',
+  selector: "app-header",
+  imports: [ThemeToggleComponent],
   template: `
-    <p>
-      header works!
-    </p>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <app-theme-toggle />
+          </li>
+        </ul>
+      </nav>
+    </header>
   `,
 })
-export class HeaderComponent {
-
-}
+export class HeaderComponent {}
