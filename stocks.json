@@ -1,0 +1,302 @@
+[
+  {
+    "symbol": "NVDA",
+    "name": "Nvidia",
+    "sector": "Technology",
+    "subSector": "Semiconductors",
+    "headQuarter": "Santa Clara, CA",
+    "dateFirstAdded": "2024-11-08",
+    "cik": "0001045810",
+    "founded": "1993-04-05"
+  },
+  {
+    "symbol": "SHW",
+    "name": "Sherwin-Williams",
+    "sector": "Basic Materials",
+    "subSector": "Chemicals - Specialty",
+    "headQuarter": "Cleveland, OH",
+    "dateFirstAdded": "2024-11-08",
+    "cik": "0000089800",
+    "founded": "1866-01-01"
+  },
+  {
+    "symbol": "AMZN",
+    "name": "Amazon.com, Inc.amazon.com",
+    "sector": "Consumer Cyclical",
+    "subSector": "Specialty Retail",
+    "headQuarter": "Seattle, WA",
+    "dateFirstAdded": "2024-02-26",
+    "cik": "0001018724",
+    "founded": "1994-07-05"
+  },
+  {
+    "symbol": "AMGN",
+    "name": "Amgen Inc.",
+    "sector": "Healthcare",
+    "subSector": "Drug Manufacturers - General",
+    "headQuarter": "Thousand Oaks, CA",
+    "dateFirstAdded": "2020-08-31",
+    "cik": "0000318154",
+    "founded": "1980-04-08"
+  },
+  {
+    "symbol": "CRM",
+    "name": "Salesforce, Inc.",
+    "sector": "Technology",
+    "subSector": "Software - Application",
+    "headQuarter": "San Francisco, CA",
+    "dateFirstAdded": "2020-08-31",
+    "cik": "0001108524",
+    "founded": "1999-02-03"
+  },
+  {
+    "symbol": "HON",
+    "name": "Honeywell International Inc.",
+    "sector": "Industrials",
+    "subSector": "Conglomerates",
+    "headQuarter": "Charlotte, NC",
+    "dateFirstAdded": "2020-08-31",
+    "cik": "0000773840",
+    "founded": "1906-01-01"
+  },
+  {
+    "symbol": "GS",
+    "name": "The Goldman Sachs Group, Inc.",
+    "sector": "Financial Services",
+    "subSector": "Financial - Capital Markets",
+    "headQuarter": "New York, NY",
+    "dateFirstAdded": "2019-04-02",
+    "cik": "0000886982",
+    "founded": "1869-01-01"
+  },
+  {
+    "symbol": "AAPL",
+    "name": "Apple Inc.",
+    "sector": "Technology",
+    "subSector": "Consumer Electronics",
+    "headQuarter": "Cupertino, CA",
+    "dateFirstAdded": "2015-03-19",
+    "cik": "0000320193",
+    "founded": "1976-04-01"
+  },
+  {
+    "symbol": "NKE",
+    "name": "Nike, Inc.",
+    "sector": "Consumer Cyclical",
+    "subSector": "Apparel - Footwear & Accessories",
+    "headQuarter": "Beaverton, OR",
+    "dateFirstAdded": "2013-09-20",
+    "cik": "0000320187",
+    "founded": "1964-01-25"
+  },
+  {
+    "symbol": "V",
+    "name": "Visa Inc.",
+    "sector": "Financial Services",
+    "subSector": "Financial - Credit Services",
+    "headQuarter": "San Francisco, CA",
+    "dateFirstAdded": "2013-09-20",
+    "cik": "0001403161",
+    "founded": "1958-09-18"
+  },
+  {
+    "symbol": "UNH",
+    "name": "UnitedHealth Group Incorporated",
+    "sector": "Healthcare",
+    "subSector": "Medical - Healthcare Plans",
+    "headQuarter": "Minnetonka, MN",
+    "dateFirstAdded": "2012-09-24",
+    "cik": "0000731766",
+    "founded": "1977-01-01"
+  },
+  {
+    "symbol": "CSCO",
+    "name": "Cisco Systems, Inc.",
+    "sector": "Technology",
+    "subSector": "Communication Equipment",
+    "headQuarter": "San Jose, CA",
+    "dateFirstAdded": "2009-06-08",
+    "cik": "0000858877",
+    "founded": "1984-12-10"
+  },
+  {
+    "symbol": "TRV",
+    "name": "The Travelers Companies, Inc.",
+    "sector": "Financial Services",
+    "subSector": "Insurance - Property & Casualty",
+    "headQuarter": "New York, NY",
+    "dateFirstAdded": "2009-06-08",
+    "cik": "0000086312",
+    "founded": "1853-01-01"
+  },
+  {
+    "symbol": "CVX",
+    "name": "Chevron Corporation",
+    "sector": "Energy",
+    "subSector": "Oil & Gas Integrated",
+    "headQuarter": "San Ramon, CA",
+    "dateFirstAdded": "2008-02-19",
+    "cik": "0000093410",
+    "founded": "1879-09-10"
+  },
+  {
+    "symbol": "VZ",
+    "name": "Verizon Communications Inc.",
+    "sector": "Communication Services",
+    "subSector": "Telecommunications Services",
+    "headQuarter": "New York, NY",
+    "dateFirstAdded": "2004-04-08",
+    "cik": "0000732712",
+    "founded": "1983-10-07"
+  },
+  {
+    "symbol": "HD",
+    "name": "The Home Depot, Inc.",
+    "sector": "Consumer Cyclical",
+    "subSector": "Home Improvement",
+    "headQuarter": "Atlanta, GA",
+    "dateFirstAdded": "1999-11-01",
+    "cik": "0000354950",
+    "founded": "1978-02-06"
+  },
+  {
+    "symbol": "MSFT",
+    "name": "Microsoft Corporation",
+    "sector": "Technology",
+    "subSector": "Software - Infrastructure",
+    "headQuarter": "Redmond, WA",
+    "dateFirstAdded": "1999-11-01",
+    "cik": "0000789019",
+    "founded": "1975-04-04"
+  },
+  {
+    "symbol": "JNJ",
+    "name": "Johnson & Johnson",
+    "sector": "Healthcare",
+    "subSector": "Drug Manufacturers - General",
+    "headQuarter": "New Brunswick, NJ",
+    "dateFirstAdded": "1997-03-17",
+    "cik": "0000200406",
+    "founded": "1886-01-01"
+  },
+  {
+    "symbol": "WMT",
+    "name": "Walmart Inc.",
+    "sector": "Consumer Defensive",
+    "subSector": "Discount Stores",
+    "headQuarter": "Bentonville, AR",
+    "dateFirstAdded": "1997-03-17",
+    "cik": "0000104169",
+    "founded": "1962-07-02"
+  },
+  {
+    "symbol": "CAT",
+    "name": "Caterpillar Inc.",
+    "sector": "Industrials",
+    "subSector": "Agricultural - Machinery",
+    "headQuarter": "Deerfield, IL",
+    "dateFirstAdded": "1991-05-06",
+    "cik": "0000018230",
+    "founded": "1925-04-15"
+  },
+  {
+    "symbol": "DIS",
+    "name": "The Walt Disney Company",
+    "sector": "Communication Services",
+    "subSector": "Entertainment",
+    "headQuarter": "Burbank, CA",
+    "dateFirstAdded": "1991-05-06",
+    "cik": "0001744489",
+    "founded": "1923-10-16"
+  },
+  {
+    "symbol": "JPM",
+    "name": "JPMorgan Chase & Co.",
+    "sector": "Financial Services",
+    "subSector": "Banks - Diversified",
+    "headQuarter": "New York, NY",
+    "dateFirstAdded": "1991-05-06",
+    "cik": "0000019617",
+    "founded": "2000-12-01"
+  },
+  {
+    "symbol": "BA",
+    "name": "The Boeing Company",
+    "sector": "Industrials",
+    "subSector": "Aerospace & Defense",
+    "headQuarter": "Arlington, VA",
+    "dateFirstAdded": "1987-03-12",
+    "cik": "0000012927",
+    "founded": "1916-07-15"
+  },
+  {
+    "symbol": "KO",
+    "name": "The Coca-Cola Company",
+    "sector": "Consumer Defensive",
+    "subSector": "Beverages - Non-Alcoholic",
+    "headQuarter": "Atlanta, GA",
+    "dateFirstAdded": "1987-03-12",
+    "cik": "0000021344",
+    "founded": "1892-01-29"
+  },
+  {
+    "symbol": "MCD",
+    "name": "McDonald's Corporation",
+    "sector": "Consumer Cyclical",
+    "subSector": "Restaurants",
+    "headQuarter": "Chicago, IL",
+    "dateFirstAdded": "1985-10-30",
+    "cik": "0000063908",
+    "founded": "1940-05-15"
+  },
+  {
+    "symbol": "AXP",
+    "name": "American Express Company",
+    "sector": "Financial Services",
+    "subSector": "Financial - Credit Services",
+    "headQuarter": "New York, NY",
+    "dateFirstAdded": "1982-08-30",
+    "cik": "0000004962",
+    "founded": "1850-03-18"
+  },
+  {
+    "symbol": "IBM",
+    "name": "International Business Machines Corporation",
+    "sector": "Technology",
+    "subSector": "Information Technology Services",
+    "headQuarter": "Armonk, NY",
+    "dateFirstAdded": "1979-06-29",
+    "cik": "0000051143",
+    "founded": "1924-06-16"
+  },
+  {
+    "symbol": "MRK",
+    "name": "Merck & Co., Inc.",
+    "sector": "Healthcare",
+    "subSector": "Drug Manufacturers - General",
+    "headQuarter": "Kenilworth, NJ",
+    "dateFirstAdded": "1979-06-29",
+    "cik": "0000310158",
+    "founded": "1891-01-01"
+  },
+  {
+    "symbol": "MMM",
+    "name": "3M Company",
+    "sector": "Industrials",
+    "subSector": "Conglomerates",
+    "headQuarter": "Saint Paul, MN",
+    "dateFirstAdded": "1976-08-09",
+    "cik": "0000066740",
+    "founded": "1902-06-13"
+  },
+  {
+    "symbol": "PG",
+    "name": "The Procter & Gamble Company",
+    "sector": "Consumer Defensive",
+    "subSector": "Household & Personal Products",
+    "headQuarter": "Cincinnati, OH",
+    "dateFirstAdded": "1932-05-26",
+    "cik": "0000080424",
+    "founded": "1837-10-31"
+  }
+]

@@ -25,6 +25,12 @@ Desarrollar una aplicación web con **Angular Moderno** que permita visualizar u
      export type Rate = {
        symbol: string;
        name: string;
+       sector: string;
+       subSector: string;
+       headQuarter: string;
+       dateFirstAdded: string;
+       cik: string;
+       founded: string;
        price: number;
        timestamp: number;
      };
