@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from "@angular/core";
+import { APP_NAME } from "../app-name.token";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class LogService {
+  appName = inject(APP_NAME);
 
   debug(message: string): void {
-    console.debug(message);
+    console.debug(this.appName + " : " + message);
   }
 
   info(message: string): void {
-    console.log(message);
+    console.log(this.appName + " : " + message);
   }
 }
