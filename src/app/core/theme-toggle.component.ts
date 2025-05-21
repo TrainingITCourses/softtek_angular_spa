@@ -1,11 +1,5 @@
-import {
-  Component,
-  computed,
-  effect,
-  Signal,
-  signal,
-  WritableSignal,
-} from "@angular/core";
+import { Component, computed, effect, inject, Signal } from "@angular/core";
+import { GlobalStore } from "../shared/global/global.store";
 
 @Component({
   selector: "app-theme-toggle",
@@ -18,7 +12,8 @@ import {
   styles: ``,
 })
 export class ThemeToggleComponent {
-  private theme: WritableSignal<string> = signal("dark");
+  private readonly globalStore = inject(GlobalStore);
+  private theme: Signal<string> = this.globalStore.theme;
   protected icon: Signal<string> = computed(() =>
     this.theme() === "light" ? "🔳" : "🔲"
   );
@@ -29,8 +24,7 @@ export class ThemeToggleComponent {
     document.documentElement.setAttribute("data-theme", currentTheme);
   });
   protected toggleTheme() {
-    this.theme.update((currentTheme) =>
-      currentTheme === "light" ? "dark" : "light"
-    );
+    const newTheme = this.theme() === "light" ? "dark" : "light";
+    this.globalStore.changeTheme(newTheme);
   }
 }
