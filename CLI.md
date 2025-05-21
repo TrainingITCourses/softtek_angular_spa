@@ -14,8 +14,10 @@ ng g c core/ThemeToggle
 
 ng g environments
 
-- c0-angular-spa\src\app\shared\env\env.token.ts
-- c0-angular-spa\src\app\shared\global\global.store.ts
+- \src\app\shared\env\env.token.ts
+- \src\app\shared\global\global.store.ts
+
+ng g c routes/home/home
 
 ng g c routes/user/user --type=page
 ng g c routes/user/register --type=page
