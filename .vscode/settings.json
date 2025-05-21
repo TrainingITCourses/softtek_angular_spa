@@ -1,0 +1,55 @@
+{
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "file": ".ai/rules/clean.code.rules.md"
+    },
+    {
+      "file": ".ai/rules/typescript.language.rules.md"
+    },
+  ],
+  "material-icon-theme.activeIconPack": "angular",
+  "material-icon-theme.folders.associations": {
+		".ai": "robot",
+		"architect": "godot",
+		"builder": "godot",
+		"craftsman": "godot",
+		"file": "meta",
+		"http": "api",
+		"prompts": "robot",
+		"domain": "cobol",
+		"system": "stack"
+	},
+	"material-icon-theme.files.associations": {
+		"*.blueprint.md": "apiblueprint",
+		"*.instructions.md": "twine",
+		"*.tracker.md": "verified",
+		"*.plan.md": "architecture",
+		"*.prompt.md": "pascal",
+		"*.template.md": "textlint",
+		"*.adapter.ts": "adonis",
+		"*.builder.ts": "unocss",
+		"*.command.ts": "console",
+    "*.config.ts": "tune",
+		"*.component.ts": "angular-component",
+		"*.decorator.ts": "renovate",
+		"*.dto.ts": "raml",
+		"*.facade.ts": "mjml",
+		"*.factory.ts": "fortran",
+		"*.functions.ts": "url",
+		"*.gateway.ts": "ifanr-cloud",
+		"*.interface.ts": "raml",
+		"*.mapper.ts": "purescript",
+		"*.module.ts": "less",
+		"*.operations.ts": "url",
+    "*.page.ts": "angular-guard",
+		"*.singleton.ts": "stitches",
+		"*.repository.ts": "database",
+		"*.service.ts": "angular-service",
+		"*.type.ts": "raml",
+		"*.utils.ts": "tilt",
+		"*.validator.ts": "velite"
+	},
+  "workbench.colorCustomizations": {
+    "statusBar.border": "#c3002f",
+  }
+}

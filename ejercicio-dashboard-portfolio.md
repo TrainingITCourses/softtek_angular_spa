@@ -46,23 +46,23 @@ Desarrollar una aplicación web con **Angular Moderno** que permita visualizar u
 ## 🧾 Modelos de datos
 
 ```ts
+export type Portfolio = {
+  id: number;
+  userId: number;
+  currency: string;
+  date: Date;
+  value: number;
+  assets: Asset[];
+};
 export type Asset = {
   id: number;
   name: string;
   type: "cash" | "crypto" | "stocks";
   symbol: string;
   quantity: number;
-};
-
-export type Portfolio = {
-  id: number;
-  userId: number;
-  currency: string;
   date: Date;
-  assets: Asset[];
   value: number;
 };
-
 export type Rate = {
   symbol: string;
   name: string;
@@ -100,4 +100,4 @@ export type Rate = {
 - `/auth` : formulario de autenticación
 - `/asset/:symbol` : detalles de un activo
 - `/asset/:symbol/edit` : formulario para editar un activo
-- `/portfolio/search?q=` : consulta y filtrado de activos con parámetros de tipo y ordenación
+- `/symbols/search?type=...&order=...` : consulta y filtrado de activos con parámetros de tipo y ordenación
