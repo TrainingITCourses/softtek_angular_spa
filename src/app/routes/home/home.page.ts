@@ -1,4 +1,5 @@
 import { Component, inject, Signal, signal } from "@angular/core";
+import { ErrorComponent } from "../../shared/error.component";
 import { LogService } from "../../shared/log/log.service";
 import { PageComponent } from "../../shared/page.component";
 import { WaitingComponent } from "../../shared/waiting.component";
@@ -7,11 +8,13 @@ import { HomeStoreService } from "./home.store.service";
 import { IpApi } from "./ip-api.type";
 
 @Component({
-  imports: [PageComponent, HomeComponent, WaitingComponent],
+  imports: [PageComponent, HomeComponent, WaitingComponent, ErrorComponent],
   template: `
     <app-page [title]="title()">
       @if(ipApiStatus()==='Loading'){
       <app-waiting />
+      } @if(ipApiStatus()==='Error'){
+      <app-error />
       } @defer(when ipApiStatus()==='Resolved'){
       <app-home [ipApi]="ipApi()" (cookiesAccepted)="onAcceptCookies($event)" />
       }
