@@ -7,10 +7,7 @@ export const routes: Routes = [
   },
   {
     path: "user",
-    loadComponent: () => import("./routes/user/user.page"),
-  },
-  {
-    path: "user/register",
-    loadComponent: () => import("./routes/user/register.page"),
+    loadChildren: () =>
+      import("./routes/user/user.routes").then((m) => m.UserRoutes),
   },
 ];

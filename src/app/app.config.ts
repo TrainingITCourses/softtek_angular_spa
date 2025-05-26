@@ -8,6 +8,7 @@ import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { environment } from "../environments/environment";
 import { routes } from "./app.routes";
 import { cacheInterceptor } from "./core/cache.interceptor";
+import { registerFakeInterceptor } from "./core/register-fake.interceptor";
 import { provideAppName, withName } from "./shared/app-name.token";
 
 export const appConfig: ApplicationConfig = {
@@ -15,6 +16,8 @@ export const appConfig: ApplicationConfig = {
     provideAppName(withName(environment.APP_NAME)),
     provideExperimentalZonelessChangeDetection(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([cacheInterceptor])),
+    provideHttpClient(
+      withInterceptors([cacheInterceptor, registerFakeInterceptor])
+    ),
   ],
 };
