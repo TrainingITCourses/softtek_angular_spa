@@ -1,7 +1,7 @@
 import { Component, inject, Signal, signal } from "@angular/core";
 import { LogService } from "../../shared/log/log.service";
 import { PageComponent } from "../../shared/page.component";
-import { WaitingComponent } from "../../shared/wainting.component";
+import { WaitingComponent } from "../../shared/waiting.component";
 import { HomeComponent } from "./home.component";
 import { HomeStoreService } from "./home.store.service";
 import { IpApi } from "./ip-api.type";
