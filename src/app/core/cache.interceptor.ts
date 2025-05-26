@@ -16,7 +16,7 @@ export const cacheInterceptor: HttpInterceptorFn = (req, next) => {
   const cachedResponse = cache.get<HttpResponse<unknown>>(req.url);
   if (cachedResponse) {
     // return throwError(() => new Error("Fake error"));
-    return of(cachedResponse).pipe(delay(5000));
+    return of(cachedResponse).pipe(delay(500));
   }
 
   return next(req).pipe(
