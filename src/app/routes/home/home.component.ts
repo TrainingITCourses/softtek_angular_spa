@@ -14,8 +14,7 @@ import { IpApi } from "./ip-api.type";
   selector: "app-home",
   imports: [JsonPipe],
   template: `
-    <p>This is the home page.</p>
-    {{ ipApiStatus() }}
+    <p>This is the home page data.</p>
     <pre>
       {{ ipApi() | json }}
     </pre
@@ -27,7 +26,6 @@ import { IpApi } from "./ip-api.type";
 export class HomeComponent {
   private readonly log = inject(LogService);
   public ipApi: InputSignal<IpApi | undefined> = input<IpApi | undefined>();
-  public ipApiStatus: InputSignal<string> = input.required<string>();
   public cookiesAccepted: OutputEmitterRef<boolean> = output<boolean>();
 
   onCookiesClick(): void {

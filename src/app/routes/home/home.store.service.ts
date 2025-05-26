@@ -17,6 +17,7 @@ import { IpApi } from "./ip-api.type";
 export class HomeStoreService {
   private readonly log = inject(LogService);
   private readonly IP_API_URL = "http://ip-api.com/json";
+
   private ipApiResource: HttpResourceRef<IpApi | undefined> =
     httpResource<IpApi>(this.IP_API_URL);
 
