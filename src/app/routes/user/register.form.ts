@@ -53,17 +53,20 @@ export class RegisterForm {
 
   protected form = new FormGroup(
     {
-      name: new FormControl("", [Validators.required, Validators.minLength(3)]),
+      name: new FormControl("Peter", [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
       email: new FormControl("pete@fake.com", [
         Validators.required,
         Validators.email,
       ]),
-      password: new FormControl("", [
+      password: new FormControl("parker1", [
         Validators.required,
         Validators.minLength(4),
         passwordValidator,
       ]),
-      password2: new FormControl("", [
+      password2: new FormControl("parker1", [
         Validators.required,
         Validators.minLength(4),
       ]),
@@ -82,6 +85,10 @@ export class RegisterForm {
 
   protected onSubmit() {
     console.log(this.form.value);
-    //this.submit.emit(defaultRegisterDto);
+    this.submit.emit({
+      name: this.form.value.name ?? "",
+      email: this.form.value.email ?? "",
+      password: this.form.value.password ?? "",
+    });
   }
 }

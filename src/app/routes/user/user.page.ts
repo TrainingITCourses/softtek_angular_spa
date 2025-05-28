@@ -1,9 +1,14 @@
-import { Component } from "@angular/core";
+import { Component, input } from "@angular/core";
 
 @Component({
   selector: "app-user",
   imports: [],
-  template: ` <p>user works!</p> `,
+  template: `
+    <p>user works!</p>
+    {{ userId() }}
+  `,
   styles: ``,
 })
-export default class UserPage {}
+export default class UserPage {
+  public userId = input.required();
+}
