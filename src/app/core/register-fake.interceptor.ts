@@ -6,7 +6,7 @@ export const registerFakeInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
   // get body payload
-  const body: any = (req.body as any).request;
+  const body: any = req.body as any;
   console.log("Body", body);
   if (Math.random() > 0.09) {
     return of(
