@@ -5,11 +5,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { FormErrorsComponent } from "../../shared/form-errors.component";
+import { mustMatchValidator, passwordValidator } from "./password.validator";
 import { RegisterDto } from "./register-dto.type";
 
 @Component({
   selector: "app-register-form",
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FormErrorsComponent],
   template: `
     <form [formGroup]="form">
       <fieldset>
@@ -17,17 +19,32 @@ import { RegisterDto } from "./register-dto.type";
         <input
           id="name"
           formControlName="name"
-          [attr.aria-invalid]="form.controls['name'].invalid"
+          [attr.aria-invalid]="isInvalid('name')"
         />
         <label for="email">Email</label>
         <input
           id="email"
           formControlName="email"
           type="email"
-          aria-invalid="false"
+          [attr.aria-invalid]="isInvalid('email')"
+        />
+        <label for="password">Password</label>
+        <input
+          id="password"
+          formControlName="password"
+          type="text"
+          [attr.aria-invalid]="isInvalid('password')"
+        />
+        <label for="password2">Repeat Password</label>
+        <input
+          id="password2"
+          formControlName="password2"
+          type="text"
+          [attr.aria-invalid]="isInvalid('password2')"
         />
       </fieldset>
       <button type="button" (click)="onSubmit()">Register</button>
+      <app-form-errors [form]="form" />
     </form>
   `,
 })
@@ -41,22 +58,27 @@ export class RegisterForm {
         Validators.required,
         Validators.email,
       ]),
-      password: new FormControl("password", [
+      password: new FormControl("", [
         Validators.required,
         Validators.minLength(4),
-        //passwordValidator,
+        passwordValidator,
       ]),
-      password2: new FormControl("password", [
+      password2: new FormControl("", [
         Validators.required,
         Validators.minLength(4),
       ]),
     },
     {
-      validators: [
-        //mustMatchValidator("password", "password2")
-      ],
+      validators: [mustMatchValidator("password", "password2")],
     }
   );
+
+  protected isInvalid(controlName: string): boolean | undefined {
+    const control = this.form.get(controlName);
+    if (!control) return undefined;
+    if (control.pristine) return undefined;
+    return control.invalid;
+  }
 
   protected onSubmit() {
     console.log(this.form.value);
