@@ -7,6 +7,7 @@ import {
   Signal,
   signal,
 } from "@angular/core";
+import { GlobalStore } from "../../shared/global/global.store";
 import { RegisterDto } from "./register-dto.type";
 import { UserTokenDto } from "./user-token.dto.type";
 
@@ -15,15 +16,16 @@ import { UserTokenDto } from "./user-token.dto.type";
 })
 export class RegisterStoreService {
   private http = inject(HttpClient);
+  private globalStore = inject(GlobalStore);
   private url = "http://localhost:3000/users/register";
 
   private userToken = signal<UserTokenDto | undefined>(undefined);
   private registerError = signal<string | undefined>(undefined);
 
   private tokenEffect = effect(() => {
-    const tokenValue = this.userToken()?.token;
-    if (tokenValue) {
-      console.log("Token value", tokenValue);
+    const userToken = this.userToken();
+    if (userToken) {
+      this.globalStore.changeUserToken(userToken);
     }
   });
 

@@ -6,6 +6,7 @@ import {
   signal,
   WritableSignal,
 } from "@angular/core";
+import { UserTokenDto } from "../../routes/user/user-token.dto.type";
 import { CacheService } from "../cache.service";
 import { GlobalState } from "./global.type";
 
@@ -24,6 +25,7 @@ export class GlobalStore {
       theme: "dark",
       user: undefined,
       ip: undefined,
+      token: undefined,
     };
   };
 
@@ -40,10 +42,28 @@ export class GlobalStore {
 
   public theme = computed(() => this.state().theme);
 
+  public token = computed(() => this.state().token);
+
   public changeTheme(theme: string) {
     this.state.update((state: GlobalState): GlobalState => {
       const clonedState = { ...state };
       clonedState.theme = theme;
+      return clonedState;
+    });
+  }
+  public changeIp(ip: string) {
+    this.state.update((state: GlobalState): GlobalState => {
+      const clonedState = { ...state };
+      clonedState.ip = ip;
+      return clonedState;
+    });
+  }
+
+  public changeUserToken(userToken: UserTokenDto) {
+    this.state.update((state: GlobalState): GlobalState => {
+      const clonedState = { ...state };
+      clonedState.user = userToken.user;
+      clonedState.token = userToken.token;
       return clonedState;
     });
   }
