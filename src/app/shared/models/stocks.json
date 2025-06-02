@@ -1,0 +1,176 @@
+[
+  {
+    "id": "5b2c7b5f-9b2b-4b8e-8f3a-0c5d2b1a4c7e",
+    "name": "Apple Inc.",
+    "industry": "Technology",
+    "symbol": "AAPL"
+  },
+  {
+    "id": "8f3a0c5d-2b1a-4c7e-5b2c-7b5f9b2b4b8e",
+    "name": "Microsoft Corporation",
+    "industry": "Technology",
+    "symbol": "MSFT"
+  },
+  {
+    "id": "7b5f9b2b-4b8e-8f3a-0c5d-2b1a4c7e5b2c",
+    "name": "Amazon.com, Inc.",
+    "industry": "Technology",
+    "symbol": "AMZN"
+  },
+  {
+    "id": "0c5d2b1a-4c7e-5b2c-7b5f-9b2b4b8e8f3a",
+    "name": "NVIDIA Corporation",
+    "industry": "Technology",
+    "symbol": "NVDA"
+  },
+  {
+    "id": "4b8e8f3a-0c5d-2b1a-4c7e-5b2c7b5f9b2b",
+    "name": "Alphabet Inc. (Class A)",
+    "industry": "Technology",
+    "symbol": "GOOGL"
+  },
+  {
+    "id": "9b2b4b8e-8f3a-0c5d-2b1a-4c7e5b2c7b5f",
+    "name": "Tesla, Inc.",
+    "industry": "Automotive",
+    "symbol": "TSLA"
+  },
+  {
+    "id": "4c7e5b2c-7b5f-9b2b-4b8e-8f3a0c5d2b1a",
+    "name": "Meta Platforms, Inc.",
+    "industry": "Technology",
+    "symbol": "META"
+  },
+  {
+    "id": "8e8f3a0c-5d2b-1a4c-7e5b-2c7b5f9b2b4b",
+    "name": "Broadcom Inc.",
+    "industry": "Technology",
+    "symbol": "AVGO"
+  },
+  {
+    "id": "1a4c7e5b-2c7b-5f9b-2b4b-8e8f3a0c5d2b",
+    "name": "Costco Wholesale Corporation",
+    "industry": "Retail",
+    "symbol": "COST"
+  },
+  {
+    "id": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "name": "Adobe Inc.",
+    "industry": "Technology",
+    "symbol": "ADBE"
+  },
+  {
+    "id": "b2c3d4e5-f6a7-8901-2345-67890abcdef0",
+    "name": "PayPal Holdings, Inc.",
+    "industry": "Technology",
+    "symbol": "PYPL"
+  },
+  {
+    "id": "c3d4e5f6-a7b8-9012-3456-7890abcdef01",
+    "name": "Comcast Corporation",
+    "industry": "Telecom",
+    "symbol": "CMCSA"
+  },
+  {
+    "id": "d4e5f6a7-b8c9-0123-4567-890abcdef012",
+    "name": "Netflix, Inc.",
+    "industry": "Entertainment",
+    "symbol": "NFLX"
+  },
+  {
+    "id": "e5f6a7b8-c9d0-1234-5678-90abcdef0123",
+    "name": "PepsiCo, Inc.",
+    "industry": "Food",
+    "symbol": "PEP"
+  },
+  {
+    "id": "f6a7b8c9-d0e1-2345-6789-0abcdef01234",
+    "name": "Intel Corporation",
+    "industry": "Technology",
+    "symbol": "INTC"
+  },
+  {
+    "id": "a7b8c9d0-e1f2-3456-7890-bcdef012345a",
+    "name": "Cisco Systems, Inc.",
+    "industry": "Technology",
+    "symbol": "CSCO"
+  },
+  {
+    "id": "b8c9d0e1-f2a3-4567-8901-cdef012345ab",
+    "name": "QUALCOMM Incorporated",
+    "industry": "Technology",
+    "symbol": "QCOM"
+  },
+  {
+    "id": "c9d0e1f2-a3b4-5678-9012-def012345abc",
+    "name": "Amgen Inc.",
+    "industry": "Biotechnology",
+    "symbol": "AMGN"
+  },
+  {
+    "id": "d0e1f2a3-b4c5-6789-0123-ef012345abcd",
+    "name": "Starbucks Corporation",
+    "industry": "Food",
+    "symbol": "SBUX"
+  },
+  {
+    "id": "e1f2a3b4-c5d6-7890-1234-f012345abcde",
+    "name": "Gilead Sciences, Inc.",
+    "industry": "Biotechnology",
+    "symbol": "GILD"
+  },
+  {
+    "id": "f2a3b4c5-d6e7-8901-2345-012345abcdef",
+    "name": "Charter Communications, Inc.",
+    "industry": "Telecom",
+    "symbol": "CHTR"
+  },
+  {
+    "id": "g2h3i4j5-k6l7-8901-2345-67890abcdef0",
+    "name": "The Walt Disney Company",
+    "industry": "Entertainment",
+    "symbol": "DIS"
+  },
+  {
+    "id": "h3i4j5k6-l7m8-9012-3456-7890abcdef01",
+    "name": "The Coca-Cola Company",
+    "industry": "Food",
+    "symbol": "KO"
+  },
+  {
+    "id": "i4j5k6l7-m8n9-0123-4567-890abcdef012",
+    "name": "The Procter & Gamble Company",
+    "industry": "Retail",
+    "symbol": "PG"
+  },
+  {
+    "id": "j5k6l7m8-n9p0-1234-5678-90abcdef0123",
+    "name": "The Home Depot, Inc.",
+    "industry": "Retail",
+    "symbol": "HD"
+  },
+  {
+    "id": "k6l7m8n9-p0q1-2345-6789-0abcdef01234",
+    "name": "Johnson & Johnson",
+    "industry": "Retail",
+    "symbol": "JNJ"
+  },
+  {
+    "id": "l7m8n9p0-q1r2-3456-7890-1234567890ab",
+    "name": "Merck & Co., Inc.",
+    "industry": "Biotechnology",
+    "symbol": "MRK"
+  },
+  {
+    "id": "m8n9p0q1-r2s3-4567-8901-234567890abc",
+    "name": "Pfizer Inc.",
+    "industry": "Biotechnology",
+    "symbol": "PFE"
+  },
+  {
+    "id": "n9p0q1r2-s3t4-5678-9012-34567890abcdef",
+    "name": "Caterpillar Inc.",
+    "industry": "Automotive",
+    "symbol": "CAT"
+  }
+]
