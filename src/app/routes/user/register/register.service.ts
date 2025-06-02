@@ -7,9 +7,9 @@ import {
   Signal,
   signal,
 } from "@angular/core";
-import { GlobalStore } from "../../shared/global/global.store";
+import { GlobalStore } from "../../../shared/global/global.store";
+import { UserTokenDto } from "../user-token.dto.type";
 import { RegisterDto } from "./register-dto.type";
-import { UserTokenDto } from "./user-token.dto.type";
 
 @Injectable({
   providedIn: "root",

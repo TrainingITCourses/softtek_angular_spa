@@ -6,6 +6,7 @@ import {
   signal,
   WritableSignal,
 } from "@angular/core";
+import { Router } from "@angular/router";
 import { UserTokenDto } from "../../routes/user/user-token.dto.type";
 import { CacheService } from "../cache.service";
 import { GlobalState } from "./global.type";
@@ -15,6 +16,7 @@ import { GlobalState } from "./global.type";
 })
 export class GlobalStore {
   private readonly cache = inject(CacheService);
+  private router = inject(Router);
 
   private getInitialState = (): GlobalState => {
     const cachedState = this.cache.get<GlobalState>("globalState");
@@ -40,9 +42,17 @@ export class GlobalStore {
     this.cache.set("globalState", currentState);
   });
 
+  // private onUserEffect = effect(() => {
+  //   const user = this.user();
+  //   if (user) this.router.navigate(["user", user]);
+  //   else this.router.navigate(["user", "register"]);
+  // });
+
   public theme = computed(() => this.state().theme);
 
   public token = computed(() => this.state().token);
+
+  public user = computed(() => this.state().user);
 
   public changeTheme(theme: string) {
     this.state.update((state: GlobalState): GlobalState => {

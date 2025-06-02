@@ -5,8 +5,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { FormErrorsComponent } from "../../shared/form-errors.component";
-import { mustMatchValidator, passwordValidator } from "./password.validator";
+import { FormErrorsComponent } from "../../../shared/form-errors.component";
+import { mustMatchValidator } from "../../../shared/must-match.validator";
+import { passwordValidator } from "../password.validator";
 import { RegisterDto } from "./register-dto.type";
 
 @Component({

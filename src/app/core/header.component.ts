@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, computed, inject } from "@angular/core";
 import { RouterLink } from "@angular/router";
+import { GlobalStore } from "../shared/global/global.store";
 import { ThemeToggleComponent } from "./theme-toggle.component";
 
 @Component({
@@ -12,12 +13,15 @@ import { ThemeToggleComponent } from "./theme-toggle.component";
           <a [routerLink]="['']">Home</a>
         </ul>
         <ul>
+          @if(isLoggedIn()){
           <li>
-            <a [routerLink]="['user']">User</a>
+            <a [routerLink]="['user', userId()]">User</a>
           </li>
+          }@else{
           <li>
             <a [routerLink]="['user', 'register']">Register</a>
           </li>
+          }
           <li>
             <app-theme-toggle />
           </li>
@@ -26,4 +30,8 @@ import { ThemeToggleComponent } from "./theme-toggle.component";
     </header>
   `,
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  private globalStore = inject(GlobalStore);
+  protected isLoggedIn = computed(() => this.userId() !== undefined);
+  protected userId = this.globalStore.user;
+}

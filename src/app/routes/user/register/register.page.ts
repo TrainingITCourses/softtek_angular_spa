@@ -1,19 +1,22 @@
 import { Component, effect, inject, Signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { PageComponent } from "../../../shared/page.component";
 import { RegisterDto } from "./register-dto.type";
 import { RegisterForm } from "./register.form";
 import { RegisterStoreService } from "./register.service";
 
 @Component({
-  imports: [RegisterForm],
+  imports: [RegisterForm, PageComponent],
   template: `
-    <app-register-form (submit)="register($event)" />
+    <app-page title="Register yourself">
+      <app-register-form (submit)="register($event)" />
 
-    <pre>
+      <pre>
       {{ user() }}
       {{ error() }}
     </pre
-    >
+      >
+    </app-page>
   `,
   styles: ``,
 })
