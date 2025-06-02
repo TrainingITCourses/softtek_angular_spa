@@ -50,6 +50,21 @@
 		"*.validator.ts": "velite"
 	},
   "workbench.colorCustomizations": {
-    "statusBar.border": "#F637E3",
+    "activityBar.activeBorder": "#FA2C04",
+    "commandCenter.activeBorder": "#FA2C04",
+    "commandCenter.inactiveBorder": "#FA2C04",
+    "editorCursor.foreground": "#FA2C04",
+    "editorError.foreground": "#00aaff",
+    "editorWarning.foreground": "#00ffff",
+    "focusBorder": "#FA2C04",
+    "inlineChat.border": "#FA2C04",
+    "panel.border": "#FA2C04",
+    "sideBar.border": "#FA2C04",
+    "statusBar.border": "#FA2C04",
+    "tab.activeBorder": "#FA2C04",
+    "tab.activeBorderTop": "#FA2C04",
+    "terminalCursor.foreground": "#FA2C04",
+    "tree.indentGuidesStroke": "#FA2C04",
+    "widget.border": "#FA2C04"
   }
 }
