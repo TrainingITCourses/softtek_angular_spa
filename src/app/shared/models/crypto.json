@@ -1,0 +1,86 @@
+[
+  {
+    "id": "c1d2e3f4-a5b6-7890-1234-567890abcdef",
+    "name": "Bitcoin",
+    "symbol": "BTC",
+    "kind": "coin"
+  },
+  {
+    "id": "d2e3f4a5-b6c7-8901-2345-67890abcdef0",
+    "name": "Ethereum",
+    "symbol": "ETH",
+    "kind": "coin"
+  },
+  {
+    "id": "e3f4a5b6-c7d8-9012-3456-7890abcdef01",
+    "name": "Tether",
+    "symbol": "USDT",
+    "kind": "stable"
+  },
+  {
+    "id": "f4a5b6c7-d8e9-0123-4567-890abcdef012",
+    "name": "BNB",
+    "symbol": "BNB",
+    "kind": "coin"
+  },
+  {
+    "id": "a5b6c7d8-e9f0-1234-5678-90abcdef0123",
+    "name": "Solana",
+    "symbol": "SOL",
+    "kind": "coin"
+  },
+  {
+    "id": "b6c7d8e9-f0a1-2345-6789-0abcdef01234",
+    "name": "USD Coin",
+    "symbol": "USDC",
+    "kind": "stable"
+  },
+  {
+    "id": "c7d8e9f0-a1b2-3456-7890-bcdef012345a",
+    "name": "XRP",
+    "symbol": "XRP",
+    "kind": "coin"
+  },
+  {
+    "id": "d8e9f0a1-b2c3-4567-8901-cdef012345ab",
+    "name": "Dogecoin",
+    "symbol": "DOGE",
+    "kind": "coin"
+  },
+  {
+    "id": "e9f0a1b2-c3d4-5678-9012-def012345abc",
+    "name": "Cardano",
+    "symbol": "ADA",
+    "kind": "coin"
+  },
+  {
+    "id": "f0a1b2c3-d4e5-6789-0123-ef012345abcd",
+    "name": "Chainlink",
+    "symbol": "LINK",
+    "kind": "token"
+  },
+  {
+    "id": "a1b2c3d4-e5f6-7890-1234-f012345abcde",
+    "name": "Shiba Inu",
+    "symbol": "SHIB",
+    "kind": "token"
+  },
+   {
+    "id": "b2c3d4e5-f6a7-8901-2345-012345abcdef",
+    "name": "Dai",
+    "symbol": "DAI",
+    "kind": "stable"
+  },
+  {
+    "id": "c3d4e5f6-a7b8-9012-3456-7890abcdef01",
+    "name": "Chainlink",
+    "symbol": "LINK",
+    "kind": "token"
+  },
+  {
+    "id": "d4e5f6a7-b8c9-0123-4567-890abcdef012",
+    "name": "Avalanche",
+    "symbol": "AVAX",
+    "kind": "coin"
+  }
+]
