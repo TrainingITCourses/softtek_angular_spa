@@ -1,4 +1,10 @@
-import { Component, inject, Signal, signal } from "@angular/core";
+import {
+  Component,
+  inject,
+  ResourceStatus,
+  Signal,
+  signal,
+} from "@angular/core";
 import { ErrorComponent } from "../../shared/error.component";
 import { LogService } from "../../shared/log/log.service";
 import { PageComponent } from "../../shared/page.component";
@@ -11,11 +17,11 @@ import { IpApi } from "./ip-api.type";
   imports: [PageComponent, HomeComponent, WaitingComponent, ErrorComponent],
   template: `
     <app-page [title]="title()">
-      @if(ipApiStatus()==='Loading'){
+      @if(ipApiStatus()==='loading'){
       <app-waiting />
-      } @if(ipApiStatus()==='Error'){
+      } @if(ipApiStatus()==='error'){
       <app-error />
-      } @defer(when ipApiStatus()==='Resolved'){
+      } @defer(when ipApiStatus()==='resolved'){
       <app-home [ipApi]="ipApi()" (cookiesAccepted)="onAcceptCookies($event)" />
       }
     </app-page>
@@ -27,7 +33,7 @@ export default class HomePage {
 
   protected title: Signal<string> = signal("Home Page Title");
   protected ipApi: Signal<IpApi | undefined> = this.homeStore.ipApi;
-  protected ipApiStatus: Signal<string> = this.homeStore.ipApiStatus;
+  protected ipApiStatus: Signal<ResourceStatus> = this.homeStore.ipApiStatus;
 
   onAcceptCookies(accepted: boolean): void {
     this.log.info("Cookies accepted " + accepted);

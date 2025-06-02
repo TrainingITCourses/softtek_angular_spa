@@ -1,6 +1,6 @@
 import {
   ApplicationConfig,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
 } from "@angular/core";
 import { provideRouter, withComponentInputBinding } from "@angular/router";
 
@@ -15,7 +15,7 @@ import { provideAppName, withName } from "./shared/app-name.token";
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAppName(withName(environment.APP_NAME)),
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(
       withInterceptors([

@@ -19,15 +19,14 @@ export class HomeStoreService {
   private readonly IP_API_URL = "http://ip-api.com/json";
 
   private ipApiResource: HttpResourceRef<IpApi | undefined> =
-    httpResource<IpApi>(this.IP_API_URL);
+    httpResource<IpApi>(() => this.IP_API_URL);
 
   public ipApi: WritableSignal<IpApi | undefined> = this.ipApiResource.value;
 
-  public ipApiStatus: Signal<string> = computed(() => {
+  public ipApiStatus: Signal<ResourceStatus> = computed(() => {
     // trigger
     const status: ResourceStatus = this.ipApiResource.status();
-    // mapper
-    return ResourceStatus[status];
+    return status;
   });
 
   private onIpApiChange = effect(() => {
