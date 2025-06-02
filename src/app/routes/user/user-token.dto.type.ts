@@ -1,4 +1,4 @@
 export type UserTokenDto = {
-  user: string;
-  token: string;
+  user: string | undefined;
+  token: string | undefined;
 };

@@ -3,6 +3,7 @@ import {
   effect,
   inject,
   Injectable,
+  Signal,
   signal,
   WritableSignal,
 } from "@angular/core";
@@ -43,7 +44,9 @@ export class GlobalStore {
   public theme = computed(() => this.state().theme);
 
   public token = computed(() => this.state().token);
-
+  public readonly user: Signal<string | undefined> = computed(
+    () => this.state().user
+  );
   public changeTheme(theme: string) {
     this.state.update((state: GlobalState): GlobalState => {
       const clonedState = { ...state };
