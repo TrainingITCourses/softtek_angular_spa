@@ -18,18 +18,8 @@ export class RegisterStoreService {
   private userTokenEffect = effect(() => {
     const userToken = this.userToken();
     if (!userToken) return;
-    const tokenValue = userToken.token;
-    if (tokenValue) {
-      localStorage.setItem("token", tokenValue);
-    } else {
-      localStorage.removeItem("token");
-    }
-    const userValue = userToken.user;
-    if (userValue) {
-      this.globalStore.changeUser(userValue);
-    } else {
-      this.globalStore.changeUser("");
-    }
+    this.globalStore.changeToken(userToken.token);
+    this.globalStore.changeUser(userToken.user);
   });
 
   public error: Signal<string | undefined> = this.registerError.asReadonly();

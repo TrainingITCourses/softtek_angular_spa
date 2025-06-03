@@ -36,12 +36,20 @@ export class GlobalStore {
     () => this.state().user
   );
 
+  public readonly token: Signal<string | undefined> = computed(
+    () => this.state().token
+  );
+
   public changeTheme(theme: string): void {
     this.state.update((state) => ({ ...state, theme }));
   }
 
   public changeUser(user: string | undefined): void {
     this.state.update((state) => ({ ...state, user }));
+  }
+
+  public changeToken(token: string | undefined): void {
+    this.state.update((state) => ({ ...state, token }));
   }
 
   public changeIp(ip: string): void {
