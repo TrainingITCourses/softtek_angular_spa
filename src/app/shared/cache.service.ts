@@ -10,6 +10,9 @@ export class CacheService {
 
   public get<T>(key: string): T | undefined {
     const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : undefined;
+    if (value) {
+      return JSON.parse(value);
+    }
+    return undefined;
   }
 }

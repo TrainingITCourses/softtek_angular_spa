@@ -1,7 +1,7 @@
 export type Crypto = {
   id: string;
-  symbol: string;
   name: string;
+  symbol: string;
   kind: CryptoKind;
 };
 

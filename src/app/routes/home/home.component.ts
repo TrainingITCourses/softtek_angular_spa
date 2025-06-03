@@ -1,13 +1,5 @@
 import { JsonPipe } from "@angular/common";
-import {
-  Component,
-  inject,
-  input,
-  InputSignal,
-  output,
-  OutputEmitterRef,
-} from "@angular/core";
-import { LogService } from "../../shared/log/log.service";
+import { Component, input, InputSignal } from "@angular/core";
 import { IpApi } from "./ip-api.type";
 
 @Component({
@@ -15,21 +7,10 @@ import { IpApi } from "./ip-api.type";
   imports: [JsonPipe],
   template: `
     <p>This is the home page data.</p>
-    <pre>
-      {{ ipApi() | json }}
-    </pre
-    >
-    <button (click)="onCookiesClick()">Accept Cookies</button>
+    <pre>{{ ipApi() | json }}</pre>
   `,
   styles: ``,
 })
 export class HomeComponent {
-  private readonly log = inject(LogService);
   public ipApi: InputSignal<IpApi | undefined> = input<IpApi | undefined>();
-  public cookiesAccepted: OutputEmitterRef<boolean> = output<boolean>();
-
-  onCookiesClick(): void {
-    this.log.info("Cookies clicked");
-    this.cookiesAccepted.emit(true);
-  }
 }

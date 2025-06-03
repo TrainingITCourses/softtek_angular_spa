@@ -2,5 +2,10 @@ export type GlobalState = {
   user: string | undefined;
   theme: string;
   ip: string | undefined;
-  token: string | undefined;
+};
+
+export const defaultGlobalState: GlobalState = {
+  user: undefined,
+  theme: "light",
+  ip: undefined,
 };

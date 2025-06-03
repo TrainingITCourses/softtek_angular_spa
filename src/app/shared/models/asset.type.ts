@@ -1,7 +1,6 @@
 export type Asset = {
   id: string;
   name: string;
-  symbol: string;
   category: AssetCategory;
   quantity: number;
   price: number;

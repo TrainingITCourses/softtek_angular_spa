@@ -1,4 +1,4 @@
-import { Component, output, OutputEmitterRef } from "@angular/core";
+import { Component, output } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -6,8 +6,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { FormErrorsComponent } from "../../../shared/form-errors.component";
-import { mustMatchValidator } from "../../../shared/must-match.validator";
-import { passwordValidator } from "../password.validator";
+import { mustMatchValidator, passwordValidator } from "./password.validator";
 import { RegisterDto } from "./register-dto.type";
 
 @Component({
@@ -33,44 +32,52 @@ import { RegisterDto } from "./register-dto.type";
         <input
           id="password"
           formControlName="password"
-          type="text"
+          type="password"
+          name="password"
           [attr.aria-invalid]="isInvalid('password')"
         />
         <label for="password2">Repeat Password</label>
         <input
           id="password2"
           formControlName="password2"
-          type="text"
+          type="password"
+          name="password2"
           [attr.aria-invalid]="isInvalid('password2')"
         />
+        <span>Accept the terms and conditions</span>
+        <input
+          id="terms"
+          type="checkbox"
+          formControlName="terms"
+          [attr.aria-invalid]="form.controls['terms'].invalid"
+        />
       </fieldset>
-      <button type="button" (click)="onSubmit()">Register</button>
+      <button type="submit" [disabled]="form.invalid" (click)="onSubmit()">
+        Register
+      </button>
+      <button type="reset" class="secondary outline" (click)="onReset()">
+        Reset
+      </button>
       <app-form-errors [form]="form" />
     </form>
   `,
 })
 export class RegisterForm {
-  public submit: OutputEmitterRef<RegisterDto> = output<RegisterDto>();
-
+  public submit = output<RegisterDto>();
   protected form = new FormGroup(
     {
-      name: new FormControl("Peter", [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
-      email: new FormControl("pete@fake.com", [
-        Validators.required,
-        Validators.email,
-      ]),
-      password: new FormControl("parker1", [
+      name: new FormControl("", [Validators.required]),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      password: new FormControl("", [
         Validators.required,
         Validators.minLength(4),
         passwordValidator,
       ]),
-      password2: new FormControl("parker1", [
+      password2: new FormControl("", [
         Validators.required,
         Validators.minLength(4),
       ]),
+      terms: new FormControl(false, [Validators.requiredTrue]),
     },
     {
       validators: [mustMatchValidator("password", "password2")],
@@ -84,12 +91,20 @@ export class RegisterForm {
     return control.invalid;
   }
 
-  protected onSubmit() {
-    console.log(this.form.value);
-    this.submit.emit({
+  protected onSubmit(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    const body: RegisterDto = {
       name: this.form.value.name ?? "",
       email: this.form.value.email ?? "",
       password: this.form.value.password ?? "",
-    });
+    };
+    this.submit.emit(body);
+  }
+
+  protected onReset(): void {
+    this.form.reset();
   }
 }

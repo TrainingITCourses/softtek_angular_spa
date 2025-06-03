@@ -5,29 +5,17 @@ import { FormGroup } from "@angular/forms";
 @Component({
   selector: "app-form-errors",
   imports: [KeyValuePipe, JsonPipe],
-  template: `
-    @if(form().invalid){
-    <section>
-      @for(controlKV of form().controls | keyvalue; track controlKV.key){
-      <ul>
-        @let errors = controlKV.value.errors;
-        <hr />
-        @if(errors){
-        <li>
-          {{ controlKV.key }}
-          :
-          {{ errors | json }}
-        </li>
-        }
-      </ul>
-      } @empty {
-      <p>No controls</p>
+  template: ` @if (form().invalid) {
+    <p>Review the form for errors:</p>
+    @for (control of form().controls | keyvalue; track control.key) {
+      @let errors = control.value.errors;
+      @if (errors) {
+        <p>{{ control.key }}: {{ errors | json }}</p>
       }
-    </section>
-    } @else {
-    <p>Todo ok</p>
+    } @empty {
+      <p>No errors</p>
     }
-  `,
+  }`,
 })
 export class FormErrorsComponent {
   public form = input.required<FormGroup>();

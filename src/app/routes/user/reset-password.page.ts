@@ -1,15 +1,7 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-reset-password',
   imports: [],
-  template: `
-    <p>
-      reset-password works!
-    </p>
-  `,
-  styles: ``
+  template: ` <p>reset-password works!</p> `,
 })
-export class ResetPasswordPage {
-
-}
+export default class ResetPasswordPage {}

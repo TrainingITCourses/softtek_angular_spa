@@ -6,36 +6,35 @@ import {
   Injectable,
   ResourceStatus,
   Signal,
-  WritableSignal,
 } from "@angular/core";
-import { LogService } from "../../shared/log/log.service";
+import { GlobalStore } from "../../shared/global/global.store";
 import { IpApi } from "./ip-api.type";
 
 @Injectable({
   providedIn: "root",
 })
 export class HomeStoreService {
-  private readonly log = inject(LogService);
   private readonly IP_API_URL = "http://ip-api.com/json";
+  private readonly globalStore = inject(GlobalStore);
 
   private ipApiResource: HttpResourceRef<IpApi | undefined> =
     httpResource<IpApi>(() => this.IP_API_URL);
 
-  public ipApi: WritableSignal<IpApi | undefined> = this.ipApiResource.value;
+  public ipApi: Signal<IpApi | undefined> =
+    this.ipApiResource.value.asReadonly();
 
   public ipApiStatus: Signal<ResourceStatus> = computed(() => {
-    // trigger
+    // trigger when the ipApiResource value changes
     const status: ResourceStatus = this.ipApiResource.status();
     return status;
   });
 
   private onIpApiChange = effect(() => {
-    // trigger
-    const ipApi: IpApi | undefined = this.ipApiResource.value();
-    // action
-    if (!ipApi) {
-      return;
-    }
-    this.log.info(`My ip is : ${ipApi.query}`);
+    // trigger when the ipApiResource value changes
+    const ipApi = this.ipApiResource.value();
+    // guard against undefined
+    if (!ipApi) return;
+    // action to perform when the ipApiResource value changes
+    this.globalStore.changeIp(ipApi.query);
   });
 }

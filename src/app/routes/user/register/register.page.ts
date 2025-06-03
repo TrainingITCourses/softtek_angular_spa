@@ -1,38 +1,32 @@
 import { Component, effect, inject, Signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { PageComponent } from "../../../shared/page.component";
 import { RegisterDto } from "./register-dto.type";
 import { RegisterForm } from "./register.form";
 import { RegisterStoreService } from "./register.service";
-
 @Component({
-  imports: [RegisterForm, PageComponent],
+  imports: [RegisterForm],
   template: `
-    <app-page title="Register yourself">
-      <app-register-form (submit)="register($event)" />
-
-      <pre>
-      {{ user() }}
-      {{ error() }}
-    </pre
-      >
-    </app-page>
+    <app-register-form (submit)="register($event)" />
+    @if (error()) {
+      <p>{{ error() }}</p>
+    }
   `,
-  styles: ``,
 })
 export default class RegisterPage {
   private registerStore = inject(RegisterStoreService);
   private router = inject(Router);
-  protected user: Signal<string | undefined> = this.registerStore.user;
   protected error: Signal<string | undefined> = this.registerStore.error;
 
-  private onUserEffect = effect(() => {
-    const user = this.user();
-    if (!user) return;
-    this.router.navigate(["user", user]);
+  private userToken = this.registerStore.userToken;
+
+  private onUserTokenEffect = effect(() => {
+    const userToken = this.userToken();
+    if (userToken) {
+      this.router.navigate(["/", "user", userToken.user]);
+    }
   });
 
-  public register(registerDto: RegisterDto) {
+  public register(registerDto: RegisterDto): void {
     this.registerStore.register(registerDto);
   }
 }

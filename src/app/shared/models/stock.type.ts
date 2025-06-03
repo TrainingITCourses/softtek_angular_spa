@@ -1,8 +1,8 @@
 export type Stock = {
   id: string;
-  symbol: string;
   name: string;
   industry: StockIndustry;
+  symbol: string;
 };
 
 export type StockIndustry =

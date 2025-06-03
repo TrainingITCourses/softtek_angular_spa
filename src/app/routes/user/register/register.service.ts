@@ -1,12 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import {
-  computed,
-  effect,
-  inject,
-  Injectable,
-  Signal,
-  signal,
-} from "@angular/core";
+import { effect, inject, Injectable, Signal, signal } from "@angular/core";
 import { GlobalStore } from "../../../shared/global/global.store";
 import { UserTokenDto } from "../user-token.dto.type";
 import { RegisterDto } from "./register-dto.type";
@@ -19,26 +12,33 @@ export class RegisterStoreService {
   private globalStore = inject(GlobalStore);
   private url = "http://localhost:3000/users/register";
 
-  private userToken = signal<UserTokenDto | undefined>(undefined);
+  public userToken = signal<UserTokenDto | undefined>(undefined);
   private registerError = signal<string | undefined>(undefined);
 
-  private tokenEffect = effect(() => {
+  private userTokenEffect = effect(() => {
     const userToken = this.userToken();
-    if (userToken) {
-      this.globalStore.changeUserToken(userToken);
+    if (!userToken) return;
+    const tokenValue = userToken.token;
+    if (tokenValue) {
+      localStorage.setItem("token", tokenValue);
+    } else {
+      localStorage.removeItem("token");
+    }
+    const userValue = userToken.user;
+    if (userValue) {
+      this.globalStore.changeUser(userValue);
+    } else {
+      this.globalStore.changeUser("");
     }
   });
 
-  public user: Signal<string | undefined> = computed(
-    () => this.userToken()?.user
-  );
   public error: Signal<string | undefined> = this.registerError.asReadonly();
 
   public register(registerDto: RegisterDto): void {
     this.userToken.set(undefined);
     this.registerError.set(undefined);
     this.http.post<UserTokenDto>(this.url, registerDto).subscribe({
-      next: (userTokenDto) => this.userToken.set(userTokenDto),
+      next: (userToken) => this.userToken.set(userToken),
       error: (error) => this.registerError.set(error.message),
     });
   }
