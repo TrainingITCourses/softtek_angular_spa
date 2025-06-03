@@ -50,6 +50,7 @@
 		"*.validator.ts": "velite"
 	},
   "workbench.colorCustomizations": {
-    "statusBar.border": "#F637E3",
+    "statusBar.background": "#F637E3",
+    "statusBar.foreground" : "#000000"
   }
 }

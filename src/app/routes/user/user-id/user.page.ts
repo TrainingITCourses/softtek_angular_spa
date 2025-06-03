@@ -23,6 +23,7 @@ export default class UserPage {
   private userStore = inject(UserStore);
   private router = inject(Router);
   protected user = this.userStore.user;
+
   public logout() {
     this.userStore.logout();
     this.router.navigate(["/"]);

@@ -52,7 +52,11 @@ import { RegisterDto } from "./register-dto.type";
           [attr.aria-invalid]="form.controls['terms'].invalid"
         />
       </fieldset>
-      <button type="submit" [disabled]="form.invalid" (click)="onSubmit()">
+      <button
+        type="submit"
+        [disabled]="form.invalid"
+        (click)="onRegisterClick()"
+      >
         Register
       </button>
       <button type="reset" class="secondary outline" (click)="onReset()">
@@ -63,7 +67,7 @@ import { RegisterDto } from "./register-dto.type";
   `,
 })
 export class RegisterForm {
-  public submit = output<RegisterDto>();
+  public register = output<RegisterDto>();
   protected form = new FormGroup(
     {
       name: new FormControl("", [Validators.required]),
@@ -91,7 +95,7 @@ export class RegisterForm {
     return control.invalid;
   }
 
-  protected onSubmit(): void {
+  protected onRegisterClick(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -101,7 +105,7 @@ export class RegisterForm {
       email: this.form.value.email ?? "",
       password: this.form.value.password ?? "",
     };
-    this.submit.emit(body);
+    this.register.emit(body);
   }
 
   protected onReset(): void {
