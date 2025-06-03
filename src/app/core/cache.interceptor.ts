@@ -25,7 +25,6 @@ export const cacheInterceptor: HttpInterceptorFn = (req, next) => {
   ) as HttpResponse<unknown>;
 
   if (cachedResponse) {
-    log.info(`Cache hit for ${req.url}`);
     return of(cachedResponse as HttpResponse<unknown>);
   }
 
@@ -33,7 +32,6 @@ export const cacheInterceptor: HttpInterceptorFn = (req, next) => {
     filter((event: HttpEvent<unknown>) => event instanceof HttpResponse),
     tap((event: HttpResponse<unknown>) => {
       cache.set(req.url, event);
-      log.info(`Cache set for ${req.url}`);
     })
   );
 };
