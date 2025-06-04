@@ -9,6 +9,7 @@ import { PortfolioStore } from "../../shared/portfolio.store";
 export class HomeStoreService {
   private readonly portfolioStore = inject(PortfolioStore);
   private readonly portfolioUrl = "http://localhost:3000/portfolio";
+
   public readonly portfolioResource = httpResource<Portfolio>(
     () => this.portfolioUrl
   );

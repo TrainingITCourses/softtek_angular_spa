@@ -1,5 +1,6 @@
 import { Component, computed, inject } from "@angular/core";
 import { PageComponent } from "../../shared/page.component";
+import { PortfolioStore } from "../../shared/portfolio.store";
 import { ResourceComponent } from "../../shared/resource.component";
 import { HomeComponent } from "./home.component";
 import { HomeStoreService } from "./home.store.service";
@@ -9,7 +10,11 @@ import { HomeStoreService } from "./home.store.service";
   template: `
     <app-page title="Your Portfolio">
       <app-resource [resource]="portfolioResource">
-        <app-home></app-home>
+        <app-home
+          [portfolio]="portfolio()"
+          [netValue]="netValue()"
+          [assetsValue]="assetsValue()"
+        />
       </app-resource>
       <footer>
         <p>Last updated: {{ lastUpdated() }}</p>
@@ -19,7 +24,11 @@ import { HomeStoreService } from "./home.store.service";
 })
 export default class HomePage {
   private readonly homeStore = inject(HomeStoreService);
+  private readonly portfolioStore = inject(PortfolioStore);
   protected portfolioResource = this.homeStore.portfolioResource;
+  protected portfolio = this.portfolioStore.portfolio;
+  protected assetsValue = this.portfolioStore.assetsValue;
+  protected netValue = this.portfolioStore.netValue;
   protected lastUpdated = computed(
     () => this.portfolioResource.value()?.lastUpdated
   );
