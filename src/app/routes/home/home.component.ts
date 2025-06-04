@@ -23,6 +23,7 @@ import { Portfolio } from "../../shared/models/portfolio.type";
               <th>Name</th>
               <th style="text-align: right">Quantity</th>
               <th style="text-align: right">Price</th>
+              <th style="text-align: right">Value</th>
             </tr>
           </thead>
           <tbody>
@@ -35,12 +36,15 @@ import { Portfolio } from "../../shared/models/portfolio.type";
               <td style="text-align: right">
                 {{ asset.price | currency }}
               </td>
+              <td style="text-align: right">
+                {{ asset.price * asset.quantity | currency }}
+              </td>
             </tr>
             }
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="2">Total</td>
+              <td colspan="3">Total</td>
               <td style="text-align: right">
                 {{ assetsValue() | currency }}
               </td>
