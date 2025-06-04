@@ -7,3 +7,11 @@ export type Portfolio = {
   assets: Asset[];
   lastUpdated: Date;
 };
+
+export const DEFAULT_PORTFOLIO: Portfolio = {
+  id: "",
+  userId: "",
+  cash: 0,
+  assets: [],
+  lastUpdated: new Date(),
+};

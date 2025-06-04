@@ -1,35 +1,26 @@
-import { Component, inject, Signal, signal } from "@angular/core";
-import { ErrorComponent } from "../../shared/error.component";
-import { LogService } from "../../shared/log/log.service";
+import { Component, computed, inject } from "@angular/core";
 import { PageComponent } from "../../shared/page.component";
-import { WaitingComponent } from "../../shared/waiting.component";
+import { ResourceComponent } from "../../shared/resource.component";
 import { HomeComponent } from "./home.component";
 import { HomeStoreService } from "./home.store.service";
-import { IpApi } from "./ip-api.type";
 
 @Component({
-  imports: [PageComponent, HomeComponent, WaitingComponent, ErrorComponent],
+  imports: [PageComponent, ResourceComponent, HomeComponent],
   template: `
-    <app-page [title]="title()">
-      @if(ipApiStatus()==='Loading'){
-      <app-waiting />
-      } @if(ipApiStatus()==='Error'){
-      <app-error />
-      } @defer(when ipApiStatus()==='Resolved'){
-      <app-home [ipApi]="ipApi()" (cookiesAccepted)="onAcceptCookies($event)" />
-      }
+    <app-page title="Your Portfolio">
+      <app-resource [resource]="portfolioResource">
+        <app-home></app-home>
+      </app-resource>
+      <footer>
+        <p>Last updated: {{ lastUpdated() }}</p>
+      </footer>
     </app-page>
   `,
 })
 export default class HomePage {
-  private readonly log = inject(LogService);
   private readonly homeStore = inject(HomeStoreService);
-
-  protected title: Signal<string> = signal("Home Page Title");
-  protected ipApi: Signal<IpApi | undefined> = this.homeStore.ipApi;
-  protected ipApiStatus: Signal<string> = this.homeStore.ipApiStatus;
-
-  onAcceptCookies(accepted: boolean): void {
-    this.log.info("Cookies accepted " + accepted);
-  }
+  protected portfolioResource = this.homeStore.portfolioResource;
+  protected lastUpdated = computed(
+    () => this.portfolioResource.value()?.lastUpdated
+  );
 }

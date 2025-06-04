@@ -1,42 +1,22 @@
-import { httpResource, HttpResourceRef } from "@angular/common/http";
-import {
-  computed,
-  effect,
-  inject,
-  Injectable,
-  ResourceStatus,
-  Signal,
-  WritableSignal,
-} from "@angular/core";
-import { LogService } from "../../shared/log/log.service";
-import { IpApi } from "./ip-api.type";
+import { httpResource } from "@angular/common/http";
+import { effect, inject, Injectable } from "@angular/core";
+import { Portfolio } from "../../shared/models/portfolio.type";
+import { PortfolioStore } from "../../shared/portfolio.store";
 
 @Injectable({
   providedIn: "root",
 })
 export class HomeStoreService {
-  private readonly log = inject(LogService);
-  private readonly IP_API_URL = "http://ip-api.com/json";
+  private readonly portfolioStore = inject(PortfolioStore);
+  private readonly portfolioUrl = "http://localhost:3000/portfolio";
+  public readonly portfolioResource = httpResource<Portfolio>(
+    () => this.portfolioUrl
+  );
 
-  private ipApiResource: HttpResourceRef<IpApi | undefined> =
-    httpResource<IpApi>(this.IP_API_URL);
-
-  public ipApi: WritableSignal<IpApi | undefined> = this.ipApiResource.value;
-
-  public ipApiStatus: Signal<string> = computed(() => {
-    // trigger
-    const status: ResourceStatus = this.ipApiResource.status();
-    // mapper
-    return ResourceStatus[status];
-  });
-
-  private onIpApiChange = effect(() => {
-    // trigger
-    const ipApi: IpApi | undefined = this.ipApiResource.value();
-    // action
-    if (!ipApi) {
-      return;
+  private onResourceValue = effect(() => {
+    const portfolio = this.portfolioResource.value();
+    if (portfolio) {
+      this.portfolioStore.updatePortfolio(portfolio);
     }
-    this.log.info(`My ip is : ${ipApi.query}`);
   });
 }

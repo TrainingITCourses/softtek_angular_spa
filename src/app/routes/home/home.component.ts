@@ -1,35 +1,59 @@
-import { JsonPipe } from "@angular/common";
-import {
-  Component,
-  inject,
-  input,
-  InputSignal,
-  output,
-  OutputEmitterRef,
-} from "@angular/core";
-import { LogService } from "../../shared/log/log.service";
-import { IpApi } from "./ip-api.type";
-
+import { CurrencyPipe, DecimalPipe } from "@angular/common";
+import { Component, inject } from "@angular/core";
+import { PortfolioStore } from "../../shared/portfolio.store";
 @Component({
   selector: "app-home",
-  imports: [JsonPipe],
+  imports: [CurrencyPipe, DecimalPipe],
   template: `
-    <p>This is the home page data.</p>
-    <pre>
-      {{ ipApi() | json }}
-    </pre
-    >
-    <button (click)="onCookiesClick()">Accept Cookies</button>
+    <article>
+      <header>
+        <dl>
+          <dt>Net Value</dt>
+          <dd>{{ netValue() | currency }}</dd>
+          <dt>Cash</dt>
+          <dd>{{ portfolio().cash | currency }}</dd>
+          <dt>Assets Value</dt>
+          <dd>{{ assetsValue() | currency }}</dd>
+        </dl>
+      </header>
+      <main>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th style="text-align: right">Quantity</th>
+              <th style="text-align: right">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (asset of portfolio().assets; track asset.id) {
+              <tr>
+                <td>{{ asset.name }}</td>
+                <td style="text-align: right">
+                  {{ asset.quantity | number: "1.2-2" }}
+                </td>
+                <td style="text-align: right">
+                  {{ asset.price | currency }}
+                </td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2">Total</td>
+              <td style="text-align: right">
+                {{ netValue() | currency }}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </main>
+    </article>
   `,
-  styles: ``,
 })
 export class HomeComponent {
-  private readonly log = inject(LogService);
-  public ipApi: InputSignal<IpApi | undefined> = input<IpApi | undefined>();
-  public cookiesAccepted: OutputEmitterRef<boolean> = output<boolean>();
-
-  onCookiesClick(): void {
-    this.log.info("Cookies clicked");
-    this.cookiesAccepted.emit(true);
-  }
+  private readonly portfolioStore = inject(PortfolioStore);
+  protected portfolio = this.portfolioStore.portfolio;
+  protected assetsValue = this.portfolioStore.assetsValue;
+  protected netValue = this.portfolioStore.netValue;
 }

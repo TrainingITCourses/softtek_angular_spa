@@ -1,73 +1,68 @@
 import {
   computed,
   effect,
+  EffectRef,
   inject,
   Injectable,
   Signal,
   signal,
   WritableSignal,
 } from "@angular/core";
-import { UserTokenDto } from "../../routes/user/user-token.dto.type";
 import { CacheService } from "../cache.service";
-import { GlobalState } from "./global.type";
+import { defaultGlobalState, GlobalState } from "./global.type";
 
 @Injectable({
   providedIn: "root",
 })
 export class GlobalStore {
-  private readonly cache = inject(CacheService);
+  private cache: CacheService = inject(CacheService);
 
-  private getInitialState = (): GlobalState => {
-    const cachedState = this.cache.get<GlobalState>("globalState");
-    if (cachedState) {
-      return cachedState;
-    }
-    return {
-      theme: "dark",
-      user: undefined,
-      ip: undefined,
-      token: undefined,
-    };
-  };
-
-  private state: WritableSignal<GlobalState> = signal<GlobalState>(
+  private readonly state: WritableSignal<GlobalState> = signal<GlobalState>(
     this.getInitialState()
   );
 
-  private onGlobalStateChange = effect(() => {
-    // trigger
-    const currentState = this.state();
-    // action
-    this.cache.set("globalState", currentState);
-  });
+  private getInitialState(): GlobalState {
+    const cachedState = this.cache.get<GlobalState>("global");
+    return cachedState || defaultGlobalState;
+  }
 
-  public theme = computed(() => this.state().theme);
+  public readonly theme: Signal<string> = computed(() => this.state().theme);
 
-  public token = computed(() => this.state().token);
+  public readonly ip: Signal<string> = computed(
+    () => this.state().ip || "127.0.0.1"
+  );
+
   public readonly user: Signal<string | undefined> = computed(
     () => this.state().user
   );
-  public changeTheme(theme: string) {
-    this.state.update((state: GlobalState): GlobalState => {
-      const clonedState = { ...state };
-      clonedState.theme = theme;
-      return clonedState;
-    });
-  }
-  public changeIp(ip: string) {
-    this.state.update((state: GlobalState): GlobalState => {
-      const clonedState = { ...state };
-      clonedState.ip = ip;
-      return clonedState;
-    });
+
+  public readonly token: Signal<string | undefined> = computed(
+    () => this.state().token
+  );
+
+  public changeTheme(theme: string): void {
+    this.state.update((state) => ({ ...state, theme }));
   }
 
-  public changeUserToken(userToken: UserTokenDto) {
-    this.state.update((state: GlobalState): GlobalState => {
-      const clonedState = { ...state };
-      clonedState.user = userToken.user;
-      clonedState.token = userToken.token;
-      return clonedState;
-    });
+  public changeUser(user: string | undefined): void {
+    this.state.update((state) => ({ ...state, user }));
   }
+
+  public changeToken(token: string | undefined): void {
+    this.state.update((state) => ({ ...state, token }));
+  }
+
+  public changeIp(ip: string): void {
+    this.state.update((state) => ({ ...state, ip }));
+  }
+
+  private onAnyChangeEffect: EffectRef = effect(() => {
+    const state = this.state();
+    this.cache.set("global", state);
+  });
+
+  private onThemeChange: EffectRef = effect(() => {
+    const theme = this.theme();
+    document.documentElement.setAttribute("data-theme", theme);
+  });
 }

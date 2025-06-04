@@ -1,8 +1,7 @@
-import { Component, inject } from "@angular/core";
+import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { FooterComponent } from "./core/footer.component";
 import { HeaderComponent } from "./core/header.component";
-import { LogService } from "./shared/log/log.service";
 
 @Component({
   selector: "app-root",
@@ -12,10 +11,8 @@ import { LogService } from "./shared/log/log.service";
     <router-outlet />
     <app-footer />
   `,
+  styles: [],
 })
 export class AppComponent {
-  private readonly logService: LogService = inject(LogService);
-  constructor() {
-    this.logService.info("AppComponent constructor");
-  }
+  protected title: string = "c0-angular-spa";
 }

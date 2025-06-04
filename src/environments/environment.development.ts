@@ -1,5 +1,5 @@
 export const environment = {
-  APP_NAME: "[DEV] Angular SPA archetype",
+  APP_NAME: "[DEV] Assets Board",
   APP_VERSION: "1.0.0.beta",
-  APP_AUTHOR: "AlbertoBasalo@AIcode.academy",
+  APP_ENVIRONMENT: "development",
 };

@@ -1,6 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
-/* Minimal CSS reset */
 :root {
   --pico-font-family: "Fira Mono", Consolas, monospace;
   --pico-font-family-emoji: "Major Mono Display", Consolas, monospace;
@@ -50,3 +47,14 @@ header nav ul li strong {
 span {
   padding-right: 1%;
 }
+
+dt {
+  display: inline;
+  font-weight: bold;
+}
+dd {
+  display: inline;
+  margin-left: 0.5rem;
+  padding-right: 1rem
+}
+
