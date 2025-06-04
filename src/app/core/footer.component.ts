@@ -25,7 +25,8 @@ export class FooterComponent {
     email: "AlbertoBasalo@AIcode.academy",
     url: "https://albertobasalo.dev",
   };
-  protected repository = "https://github.com/AIcodeAcademy/AssetsBoard";
+  protected repository =
+    "https://github.com/TrainingITCourses/softtek_angular_spa";
   protected archetype = "https://github.com/AIcodeAcademy/ArchetypeAngularSPA";
   protected archetypeName = "Archetype Angular SPA";
   protected year: number = new Date().getFullYear();
