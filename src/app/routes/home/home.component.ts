@@ -1,43 +1,59 @@
 import { CurrencyPipe, DecimalPipe } from "@angular/common";
-import { Component, computed, input } from "@angular/core";
-import { Portfolio } from "../../shared/models/portfolio.type";
+import { Component, inject } from "@angular/core";
+import { PortfolioStore } from "../../shared/portfolio.store";
 @Component({
   selector: "app-home",
   imports: [CurrencyPipe, DecimalPipe],
   template: `
     <article>
       <header>
-        <h3>Net Value: {{ netValue() | currency }}</h3>
-        <p>Cash: {{ portfolio().cash | currency }}</p>
-        <p>Assets Value: {{ assetsValue() | currency }}</p>
+        <dl>
+          <dt>Net Value</dt>
+          <dd>{{ netValue() | currency }}</dd>
+          <dt>Cash</dt>
+          <dd>{{ portfolio().cash | currency }}</dd>
+          <dt>Assets Value</dt>
+          <dd>{{ assetsValue() | currency }}</dd>
+        </dl>
       </header>
       <main>
         <table>
           <thead>
             <tr>
               <th>Name</th>
-              <th>Quantity</th>
-              <th>Price</th>
+              <th style="text-align: right">Quantity</th>
+              <th style="text-align: right">Price</th>
             </tr>
           </thead>
           <tbody>
             @for (asset of portfolio().assets; track asset.id) {
               <tr>
                 <td>{{ asset.name }}</td>
-                <td>{{ asset.quantity | number: "1.2-2" }}</td>
-                <td>{{ asset.price | currency }}</td>
+                <td style="text-align: right">
+                  {{ asset.quantity | number: "1.2-2" }}
+                </td>
+                <td style="text-align: right">
+                  {{ asset.price | currency }}
+                </td>
               </tr>
             }
           </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2">Total</td>
+              <td style="text-align: right">
+                {{ netValue() | currency }}
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </main>
     </article>
   `,
 })
 export class HomeComponent {
-  public portfolio = input.required<Portfolio>();
-  public assetsValue = computed(() =>
-    this.portfolio().assets.reduce((acc, asset) => acc + asset.price, 0)
-  );
-  public netValue = computed(() => this.portfolio().cash + this.assetsValue());
+  private readonly portfolioStore = inject(PortfolioStore);
+  protected portfolio = this.portfolioStore.portfolio;
+  protected assetsValue = this.portfolioStore.assetsValue;
+  protected netValue = this.portfolioStore.netValue;
 }

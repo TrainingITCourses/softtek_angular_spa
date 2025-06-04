@@ -16,18 +16,12 @@ export function provideEnv(
 export function withData(
   name: string,
   version: string,
-  repository: string,
-  author: {
-    name: string;
-    email: string;
-    url: string;
-  }
+  environment: "development" | "production"
 ): EnvironmentProviders {
   const envValue: Env = {
     name,
     version,
-    repository,
-    author,
+    environment,
   };
   return makeEnvironmentProviders([
     {

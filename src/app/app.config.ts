@@ -23,8 +23,7 @@ export const appConfig: ApplicationConfig = {
       withData(
         environment.APP_NAME,
         environment.APP_VERSION,
-        environment.APP_REPOSITORY,
-        environment.APP_AUTHOR
+        environment.APP_ENVIRONMENT as "development" | "production"
       )
     ),
     provideAppInitializer(async () => {

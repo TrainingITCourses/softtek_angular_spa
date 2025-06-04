@@ -1,6 +1,4 @@
-import { Component, inject } from "@angular/core";
-import { ENV } from "../shared/env/env.token";
-import { Env } from "../shared/env/env.type";
+import { Component } from "@angular/core";
 
 @Component({
   selector: "app-footer",
@@ -8,21 +6,27 @@ import { Env } from "../shared/env/env.type";
   template: `
     <footer>
       <small>
-        &copy; {{ year }} by
-        <a class="secondary" href="{{ env.author.url }}">{{
-          env.author.name
-        }}</a>
-        . All rights reserved.
-        <i
-          >Based on
-          <a href="{{ env.repository }}">{{ env.name }} {{ env.version }}</a></i
-        >
+        <span>
+          &copy; {{ year }} by
+          <a class="secondary" href="{{ author.url }}">{{ author.name }}.</a>
+        </span>
+        <span>
+          <a href="{{ repository }}">Code</a> based on
+          <a href="{{ archetype }}">{{ archetypeName }}</a>
+        </span>
       </small>
     </footer>
   `,
   styles: ``,
 })
 export class FooterComponent {
-  protected env: Env = inject(ENV);
+  protected author = {
+    name: "AlbertoBasalo",
+    email: "AlbertoBasalo@AIcode.academy",
+    url: "https://albertobasalo.dev",
+  };
+  protected repository = "https://github.com/AIcodeAcademy/AssetsBoard";
+  protected archetype = "https://github.com/AIcodeAcademy/ArchetypeAngularSPA";
+  protected archetypeName = "Archetype Angular SPA";
   protected year: number = new Date().getFullYear();
 }
