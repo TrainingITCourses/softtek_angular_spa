@@ -20,21 +20,7 @@ Desarrollar una aplicación web con **Angular Moderno** que permita visualizar u
 
 3. **Simulación de precios**
 
-   - Utilizar un **interceptor HTTP** en Angular para interceptar las peticiones a precios y devolver valores simulados con el siguiente formato:
-     ```ts
-     export type Rate = {
-       symbol: string;
-       name: string;
-       sector: string;
-       subSector: string;
-       headQuarter: string;
-       dateFirstAdded: string;
-       cik: string;
-       founded: string;
-       price: number;
-       timestamp: number;
-     };
-     ```
+   - Utilizar un **interceptor HTTP** en Angular para interceptar las peticiones a precios y devolver valores simulados con el siguiente formato según carpeta Models
 
 4. **Filtrado por tipo de activo**
 
