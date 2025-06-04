@@ -12,11 +12,11 @@ import { routes } from "./app.routes";
 import { authInterceptor } from "./core/auth.interceptor";
 import { cacheInterceptor } from "./core/cache.interceptor";
 import { logFakeInterceptor } from "./core/log-fake.interceptor";
+import { portfolioFakeInterceptor } from "./core/portfolio-fake.interceptor";
 import { usersFakeInterceptor } from "./core/users-fake.interceptor";
 import { provideEnv, withData } from "./shared/env/env.token";
 import { GlobalStore } from "./shared/global/global.store";
 import { LogService } from "./shared/log/log.service";
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideEnv(
@@ -40,6 +40,7 @@ export const appConfig: ApplicationConfig = {
         cacheInterceptor,
         usersFakeInterceptor,
         logFakeInterceptor,
+        portfolioFakeInterceptor,
       ])
     ),
   ],
