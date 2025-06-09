@@ -3,7 +3,8 @@ import { RouterLink } from "@angular/router";
 import { ENV } from "../shared/env/env.token";
 import { Env } from "../shared/env/env.type";
 import { GlobalStore } from "../shared/global/global.store";
-import { PortfolioSummaryComponent } from "../shared/portfolio-summary.component";
+
+import { PortfolioSummaryComponent } from "../shared/portfolio/portfolio-summary.component";
 import { ThemeToggleComponent } from "./theme-toggle.component";
 
 @Component({
@@ -19,16 +20,16 @@ import { ThemeToggleComponent } from "./theme-toggle.component";
         </ul>
         <ul>
           @if (isLoggedIn()) {
-            <li>
-              <a [routerLink]="['user', user()]">User</a>
-            </li>
-            <li>
-              <app-portfolio-summary />
-            </li>
+          <li>
+            <a [routerLink]="['user', user()]">User</a>
+          </li>
+          <li>
+            <app-portfolio-summary />
+          </li>
           } @else {
-            <li>
-              <a [routerLink]="['user', 'register']">Register</a>
-            </li>
+          <li>
+            <a [routerLink]="['user', 'register']">Register</a>
+          </li>
           }
           <li>
             <app-theme-toggle />
