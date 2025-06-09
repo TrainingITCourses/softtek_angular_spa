@@ -4,6 +4,8 @@ Curso de Angular v19/20 para Softtek
 
 Repository: [TrainingIT courses / softtek angular spa](https://github.com/TrainingITCourses/softtek_angular_spa)
 
+API Server repository: [Express API/ branch assets board](https://github.com/AIcodeAcademy/ArchetypeExpressAPI/tree/assets-board)
+
 ```bash
 # Create a new Angular project
 # name: softtek-angular-spa
