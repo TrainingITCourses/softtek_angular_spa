@@ -4,27 +4,24 @@
   "cash": 78452.34,
   "assets": [
     {
-      "id": "1",
-      "name": "Apple stocks",
-      "category": "stock",
-      "quantity": 88,
-      "price": 203.08,
+      "asset_type": "stock",
+      "symbol": "AAPL",
+      "units": 88,
+      "average_price": 203.08,
       "lastUpdated": "2025-06-04"
     },
     {
-      "id": "2",
-      "name": "Bitcoin",
-      "category": "crypto",
-      "quantity": 0.02,
-      "price": 90450,
+      "asset_type": "crypto",
+      "symbol": "BTC",
+      "units": 0.02,
+      "average_price": 90450,
       "lastUpdated": "2025-06-04"
     },
     {
-      "id": "3",
-      "name": "Microsoft stocks",
-      "category": "stock",
-      "quantity": 14,
-      "price": 462.76,
+      "asset_type": "stock",
+      "symbol": "MSFT",
+      "units": 14,
+      "average_price": 462.76,
       "lastUpdated": "2025-06-04"
     }
   ],
