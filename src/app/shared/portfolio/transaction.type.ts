@@ -12,3 +12,14 @@ export type Transaction = {
   units: number;
   price_per_unit: number;
 };
+
+export const DEFAULT_TRANSACTION: Transaction = {
+  id: "",
+  portfolio_id: "",
+  timestamp: new Date(),
+  type: "buy",
+  asset_type: "stock",
+  symbol: "",
+  units: 0,
+  price_per_unit: 0,
+};

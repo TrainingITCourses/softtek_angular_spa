@@ -1,10 +1,11 @@
 import { CurrencyPipe, DecimalPipe } from "@angular/common";
-import { Component, input } from "@angular/core";
+import { Component, computed, input } from "@angular/core";
+import { RouterLink } from "@angular/router";
 import { Portfolio } from "../../shared/portfolio/portfolio.type";
 
 @Component({
   selector: "app-home",
-  imports: [CurrencyPipe, DecimalPipe],
+  imports: [CurrencyPipe, DecimalPipe, RouterLink],
   template: `
     <article>
       <header>
@@ -18,6 +19,7 @@ import { Portfolio } from "../../shared/portfolio/portfolio.type";
         </dl>
       </header>
       <main>
+        @if(hasAssets()){
         <table>
           <thead>
             <tr>
@@ -52,6 +54,10 @@ import { Portfolio } from "../../shared/portfolio/portfolio.type";
             </tr>
           </tfoot>
         </table>
+        } @else {
+        <p>No assets yet</p>
+        }
+        <a [routerLink]="['assets', 'buy']">Add new asset</a>
       </main>
     </article>
   `,
@@ -64,4 +70,5 @@ export class HomeComponent {
   public portfolio = input.required<Portfolio>();
   public assetsValue = input.required<number>();
   public netValue = input.required<number>();
+  protected hasAssets = computed(() => this.portfolio().assets.length > 0);
 }

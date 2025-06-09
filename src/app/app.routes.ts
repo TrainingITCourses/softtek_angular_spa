@@ -10,4 +10,8 @@ export const routes: Routes = [
     loadChildren: () =>
       import("./routes/user/user.routes").then((m) => m.USER_ROUTES),
   },
+  {
+    path: "assets/buy",
+    loadComponent: () => import("./routes/assets/buy/buy-asset.page"),
+  },
 ];
