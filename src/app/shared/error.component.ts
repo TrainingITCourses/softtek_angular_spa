@@ -1,9 +1,13 @@
-import { Component, signal, Signal } from "@angular/core";
+import { Component, input, InputSignal } from "@angular/core";
 
 @Component({
   selector: "app-error",
-  template: `<input disabled aria-invalid="true" [value]="message()" />`,
+  template: `<input
+    disabled
+    aria-invalid="true"
+    [value]="'💣 Error ...' + message()"
+  />`,
 })
 export class ErrorComponent {
-  public message: Signal<string> = signal("💣 Error ...");
+  public message: InputSignal<string> = input("");
 }

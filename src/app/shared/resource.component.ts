@@ -3,7 +3,7 @@ import {
   computed,
   input,
   InputSignal,
-  ResourceRef,
+  Resource,
 } from "@angular/core";
 import { ErrorComponent } from "./error.component";
 import { WaitingComponent } from "./waiting.component";
@@ -12,21 +12,23 @@ import { WaitingComponent } from "./waiting.component";
   selector: "app-resource",
   imports: [WaitingComponent, ErrorComponent],
   template: `
-    @switch (status()) {
-      @case ("loading") {
-        <app-waiting />
-      }
-      @case ("error") {
-        <app-error />
-      }
-      @case ("resolved") {
-        <ng-content />
-      }
+    @if (resource().isLoading()) {
+    <app-waiting />
+    } @else if (resource().error()) {
+    <app-error [message]="errorMessage()" />
+    } @else {
+    <ng-content />
     }
   `,
 })
 export class ResourceComponent {
-  public resource: InputSignal<ResourceRef<any>> =
-    input.required<ResourceRef<any>>();
-  public status = computed(() => this.resource().status());
+  public resource: InputSignal<Resource<any>> = input.required<Resource<any>>();
+  protected status = computed(() => this.resource().status());
+  protected errorMessage = computed(() => {
+    const error = this.resource().error();
+    if (error && error.message) {
+      return error.message;
+    }
+    return "Unknown error";
+  });
 }
