@@ -8,6 +8,7 @@ import {
   Signal,
   WritableSignal,
 } from "@angular/core";
+import { Asset, AssetType } from "./asset.type";
 import { CryptoRate } from "./crypto-rate.type";
 import { DEFAULT_PORTFOLIO, Portfolio } from "./portfolio.type";
 import { StockPrice } from "./stock-price.type";
@@ -34,25 +35,38 @@ export class LoadPortfolioService implements Resource<Portfolio> {
     if (!this.portfolioResource.value()) return;
     const portfolio = this.portfolioResource.value()?.[0];
     if (!portfolio || portfolio.assets.length == 0) return;
+
     const updatedAssetPrices = await Promise.all(
       portfolio.assets.map(async (asset) => {
-        let url = "http://localhost:3000";
-        if (asset.asset_type === "stock") {
-          url = url + "/stocks/" + asset.symbol + "/price";
-        } else {
-          url = url + "/cryptos/" + asset.symbol + "/rate";
-        }
-        const request = await fetch(url);
-        const data = await request.json();
-        const lastPrice =
-          asset.asset_type === "stock"
-            ? (data as StockPrice).price
-            : (data as CryptoRate).dollar;
-        return { ...asset, last_price: lastPrice };
+        const response = await fetch(this.buildUrl(asset));
+        const last_price = await this.extractLastPrice(
+          response,
+          asset.asset_type
+        );
+        return { ...asset, last_price };
       })
     );
+
     portfolio.assets = updatedAssetPrices;
-    console.log(portfolio);
     this.value.set(portfolio);
   });
+
+  private buildUrl(asset: Asset) {
+    let url = "http://localhost:3000";
+    if (asset.asset_type === "stock") {
+      url = url + "/stocks/" + asset.symbol + "/price";
+    } else {
+      url = url + "/cryptos/" + asset.symbol + "/rate";
+    }
+    return url;
+  }
+
+  private async extractLastPrice(response: Response, assetType: AssetType) {
+    const data = await response.json();
+    const lastPrice =
+      assetType === "stock"
+        ? (data as StockPrice).price
+        : (data as CryptoRate).dollar;
+    return lastPrice;
+  }
 }
