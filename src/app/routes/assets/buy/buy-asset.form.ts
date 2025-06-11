@@ -72,6 +72,11 @@ export class BuyAssetFormComponent {
   protected symbol: ModelSignal<string> = model("");
   protected pricePerUnit = signal(Math.floor(Math.random() * 100) + 1);
   protected units: ModelSignal<number> = model(1);
+
+  constructor() {
+    this.loadSymbolsService.assetType = this.assetType;
+  }
+
   public onSubmitClick(): void {
     const transaction: CreateTransactionDto = {
       type: "buy",
