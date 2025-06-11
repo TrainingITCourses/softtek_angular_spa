@@ -4,16 +4,17 @@ import {
   model,
   ModelSignal,
   output,
-  signal,
+  Signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { AssetType } from "../../../shared/portfolio/asset.type";
 import { CreateTransactionDto } from "../../../shared/portfolio/create-transaction.dto";
+import { LoadSymbolPriceService } from "./load-symbol-price.service";
 import { LoadSymbolsService } from "./load-symbols.service";
 
 @Component({
   selector: "app-buy-asset-form",
-  providers: [LoadSymbolsService],
+  providers: [LoadSymbolsService, LoadSymbolPriceService],
   imports: [FormsModule],
   template: `
     <form>
@@ -64,17 +65,20 @@ export class BuyAssetFormComponent {
   public buy = output<CreateTransactionDto>();
 
   private loadSymbolsService = inject(LoadSymbolsService);
+  private loadSymbolPriceService = inject(LoadSymbolPriceService);
 
-  protected assetType = model<AssetType>("stock");
+  protected assetType: ModelSignal<AssetType> = model<AssetType>("stock");
 
   protected symbols = this.loadSymbolsService.value;
 
   protected symbol: ModelSignal<string> = model("");
-  protected pricePerUnit = signal(Math.floor(Math.random() * 100) + 1);
+  protected pricePerUnit: Signal<number> = this.loadSymbolPriceService.value;
   protected units: ModelSignal<number> = model(1);
 
   constructor() {
     this.loadSymbolsService.assetType = this.assetType;
+    this.loadSymbolPriceService.assetType = this.assetType;
+    this.loadSymbolPriceService.symbol = this.symbol;
   }
 
   public onSubmitClick(): void {

@@ -6,6 +6,7 @@ import {
   ResourceStatus,
   signal,
   Signal,
+  WritableSignal,
 } from "@angular/core";
 import { AssetType } from "../../../shared/portfolio/asset.type";
 
@@ -21,7 +22,7 @@ export class LoadSymbolsService implements Resource<AnySymbol[]> {
     () => `${this.apiUrl}/${this.assetUrl()}`
   );
 
-  public assetType = signal<AssetType>("stock");
+  public assetType: WritableSignal<AssetType> = signal<AssetType>("stock");
   private assetUrl = computed(() =>
     this.assetType() === "stock" ? "stocks" : "cryptos"
   );
