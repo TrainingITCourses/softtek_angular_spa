@@ -24,13 +24,7 @@ import { LoadSymbolsService } from "./load-symbols.service";
         <legend>Buy an Asset</legend>
         <section>
           <label for="asset_type">Asset Type to buy</label>
-          <input
-            type="radio"
-            name="asset_type"
-            id="stock"
-            value="stock"
-            [(ngModel)]="assetType"
-          />
+          <input type="radio" name="asset_type" id="stock" value="stock" [(ngModel)]="assetType" />
           <label for="stock"> Stock </label>
           <input
             type="radio"
@@ -50,12 +44,7 @@ import { LoadSymbolsService } from "./load-symbols.service";
           }
         </select>
         <label for="price_per_unit">Price per unit</label>
-        <input
-          type="number"
-          [value]="pricePerUnit()"
-          id="price_per_unit"
-          readonly
-        />
+        <input type="number" [value]="pricePerUnit()" id="price_per_unit" readonly />
         <label for="units">Units</label>
         <input type="number" [(ngModel)]="units" name="units" id="units" />
       </fieldset>

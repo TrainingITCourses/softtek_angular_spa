@@ -1,13 +1,5 @@
 import { httpResource } from "@angular/common/http";
-import {
-  computed,
-  Injectable,
-  Resource,
-  ResourceStatus,
-  signal,
-  Signal,
-  WritableSignal,
-} from "@angular/core";
+import { computed, Injectable, Resource, signal, WritableSignal } from "@angular/core";
 import { AssetType } from "../../../shared/portfolio/asset.type";
 
 export type AnySymbol = {
@@ -18,18 +10,14 @@ export type AnySymbol = {
 @Injectable()
 export class LoadSymbolsService implements Resource<AnySymbol[]> {
   private readonly apiUrl = "http://localhost:3000";
-  private readonly symbols = httpResource<AnySymbol[]>(
-    () => `${this.apiUrl}/${this.assetUrl()}`
-  );
+  private readonly symbols = httpResource<AnySymbol[]>(() => `${this.apiUrl}/${this.assetUrl()}`);
 
   public assetType: WritableSignal<AssetType> = signal<AssetType>("stock");
-  private assetUrl = computed(() =>
-    this.assetType() === "stock" ? "stocks" : "cryptos"
-  );
+  private assetUrl = computed(() => (this.assetType() === "stock" ? "stocks" : "cryptos"));
 
-  value: Signal<AnySymbol[]> = computed(() => this.symbols.value() ?? []);
-  status: Signal<ResourceStatus> = signal("idle");
-  error: Signal<Error | undefined> = signal(undefined);
-  isLoading: Signal<boolean> = signal(false);
+  public value = computed(() => this.symbols.value() ?? []);
+  public status = this.symbols.status;
+  public error = this.symbols.error;
+  public isLoading = this.symbols.isLoading;
   public hasValue = (): this is Resource<AnySymbol[]> => true;
 }

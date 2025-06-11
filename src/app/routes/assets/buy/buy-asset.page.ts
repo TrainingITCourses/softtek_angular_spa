@@ -20,23 +20,20 @@ export default class BuyAssetPage {
   protected loadPortfolioService = inject(LoadPortfolioService);
   private portfolioStore = inject(PortfolioStore);
 
-  protected onBuy(createTransactionDto: CreateTransactionDto) {
-    const portfolioId = this.portfolioStore.portfolio().id;
-    this.buyAssetService.buyAsset(portfolioId, createTransactionDto);
-  }
-
   private onResolvedBuyEffect = effect(() => {
     const buyStatus = this.buyAssetService.status();
     if (buyStatus === "resolved") {
       this.loadPortfolioService.loadPortfolio();
     }
   });
-
-  private onResolvedLoadEffect = effect(() => {
-    const loadStatus = this.loadPortfolioService.status();
-    if (loadStatus === "resolved") {
-      const portfolio = this.loadPortfolioService.value();
-      this.portfolioStore.setState(portfolio);
+  private onLoadPortfolioResolved = effect(() => {
+    if (this.loadPortfolioService.status() === "resolved") {
+      this.portfolioStore.setState(this.loadPortfolioService.value());
     }
   });
+
+  protected onBuy(createTransactionDto: CreateTransactionDto) {
+    const portfolioId = this.portfolioStore.portfolio().id;
+    this.buyAssetService.buyAsset(portfolioId, createTransactionDto);
+  }
 }

@@ -10,25 +10,14 @@ import { HomeComponent } from "./home.component";
 
 @Component({
   providers: [CreatePortfolioService, LoadPortfolioService],
-  imports: [
-    PageComponent,
-    ResourceComponent,
-    HomeComponent,
-    CreatePortfolioForm,
-  ],
+  imports: [PageComponent, ResourceComponent, HomeComponent, CreatePortfolioForm],
   template: `
     <app-page title="Your Portfolio">
       <app-resource [resource]="portfolioResource">
         @if(gotPortfolio()){
-        <app-home
-          [portfolio]="portfolio()"
-          [netValue]="netValue()"
-          [assetsValue]="assetsValue()"
-        />
+        <app-home [portfolio]="portfolio()" [netValue]="netValue()" [assetsValue]="assetsValue()" />
         }@else {
         <app-create-portfolio-form (save)="onSavePortfolio($event)" />
-        Status: {{ createPortfolioStatus() }} Error:
-        {{ createPortfolioError() }}
         }
       </app-resource>
       <footer>
@@ -39,8 +28,9 @@ import { HomeComponent } from "./home.component";
 })
 export default class HomePage {
   private readonly loadPortfolioService = inject(LoadPortfolioService);
-  private createPortfolioService = inject(CreatePortfolioService);
+  private readonly createPortfolioService = inject(CreatePortfolioService);
   private readonly portfolioStore = inject(PortfolioStore);
+
   protected portfolioResource = this.loadPortfolioService.portfolioResource;
   protected portfolio = this.portfolioStore.portfolio;
   protected netValue = this.portfolioStore.netValue;
@@ -48,23 +38,19 @@ export default class HomePage {
   protected lastUpdated = computed(() => this.portfolio().lastUpdated);
   protected gotPortfolio = computed(() => this.portfolio().id !== "");
 
-  protected onSavePortfolio(portfolio: Portfolio) {
-    console.log("saving", portfolio);
-    // post request
-    this.createPortfolioService.createPortfolio(portfolio);
-  }
-  protected createPortfolioStatus = computed(() =>
-    this.createPortfolioService.status()
-  );
-  protected createPortfolioError = computed(
-    () => this.createPortfolioService.error()?.message || ""
-  );
-
   private onCreatePortfolioResolved = effect(() => {
-    const status = this.createPortfolioStatus();
-    if (status == "resolved") {
-      const portfolio = this.createPortfolioService.value();
-      this.portfolioStore.setState(portfolio);
+    if (this.createPortfolioService.status() === "resolved") {
+      this.createPortfolioService.status.set("idle");
+      this.loadPortfolioService.loadPortfolio();
     }
   });
+  private onLoadPortfolioResolved = effect(() => {
+    if (this.loadPortfolioService.status() === "resolved") {
+      this.portfolioStore.setState(this.loadPortfolioService.value());
+    }
+  });
+
+  protected onSavePortfolio(portfolio: Portfolio) {
+    this.createPortfolioService.createPortfolio(portfolio);
+  }
 }

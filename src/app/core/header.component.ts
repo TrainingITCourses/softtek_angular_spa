@@ -19,12 +19,12 @@ import { ThemeToggleComponent } from "./theme-toggle.component";
           </li>
         </ul>
         <ul>
+          <li>
+            <app-portfolio-summary />
+          </li>
           @if (isLoggedIn()) {
           <li>
             <a [routerLink]="['user', user()]">User</a>
-          </li>
-          <li>
-            <app-portfolio-summary />
           </li>
           } @else {
           <li>

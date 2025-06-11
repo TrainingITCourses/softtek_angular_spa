@@ -14,10 +14,7 @@ export class PortfolioStore {
   public readonly portfolio = computed(() => this.state());
 
   public assetsValue = computed(() =>
-    this.portfolio().assets.reduce(
-      (acc, asset) => acc + asset.last_price * asset.units,
-      0
-    )
+    this.portfolio().assets.reduce((acc, asset) => acc + asset.last_price * asset.units, 0)
   );
 
   public netValue = computed(() => this.portfolio().cash + this.assetsValue());
