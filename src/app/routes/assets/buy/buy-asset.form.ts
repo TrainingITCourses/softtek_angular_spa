@@ -1,6 +1,8 @@
 import {
   Component,
+  computed,
   inject,
+  linkedSignal,
   model,
   ModelSignal,
   output,
@@ -70,8 +72,8 @@ export class BuyAssetFormComponent {
   protected assetType: ModelSignal<AssetType> = model<AssetType>("stock");
 
   protected symbols = this.loadSymbolsService.value;
-
-  protected symbol: ModelSignal<string> = model("");
+  private firstSymbol = computed(() => this.symbols()[0]?.symbol);
+  protected symbol = linkedSignal<string>(() => this.firstSymbol() ?? "");
   protected pricePerUnit: Signal<number> = this.loadSymbolPriceService.value;
   protected units: ModelSignal<number> = model(1);
 
@@ -90,6 +92,8 @@ export class BuyAssetFormComponent {
       price_per_unit: this.pricePerUnit(),
     };
     console.log(transaction);
+    this.units.set(1);
+    this.symbol.set(this.firstSymbol());
     // this.buy.emit(transaction);
   }
 }
