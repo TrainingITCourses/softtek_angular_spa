@@ -1,47 +1,86 @@
-import { Component, output } from "@angular/core";
 import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
+  Component,
+  inject,
+  model,
+  ModelSignal,
+  output,
+  signal,
+} from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { AssetType } from "../../../shared/portfolio/asset.type";
 import { CreateTransactionDto } from "../../../shared/portfolio/create-transaction.dto";
+import { LoadSymbolsService } from "./load-symbols.service";
 
 @Component({
   selector: "app-buy-asset-form",
-  imports: [ReactiveFormsModule],
+  providers: [LoadSymbolsService],
+  imports: [FormsModule],
   template: `
-    <form [formGroup]="form">
+    <form>
       <fieldset>
         <legend>Buy an Asset</legend>
+        <section>
+          <label for="asset_type">Asset Type to buy</label>
+          <input
+            type="radio"
+            name="asset_type"
+            id="stock"
+            value="stock"
+            [(ngModel)]="assetType"
+          />
+          <label for="stock"> Stock </label>
+          <input
+            type="radio"
+            name="asset_type"
+            id="crypto"
+            value="crypto"
+            [(ngModel)]="assetType"
+          />
+          <label htmlFor="crypto"> Crypto </label>
+        </section>
         <label for="symbol">Symbol</label>
-        <input type="text" formControlName="symbol" id="symbol" />
+        <select [(ngModel)]="symbol" name="symbol">
+          @for(anySymbol of symbols(); track anySymbol.symbol){
+          <option [value]="anySymbol.symbol">
+            {{ anySymbol.name }}
+          </option>
+          }
+        </select>
         <label for="price_per_unit">Price per unit</label>
         <input
           type="number"
-          formControlName="price_per_unit"
+          [value]="pricePerUnit()"
           id="price_per_unit"
+          readonly
         />
         <label for="units">Units</label>
-        <input type="number" formControlName="units" id="units" />
+        <input type="number" [(ngModel)]="units" name="units" id="units" />
       </fieldset>
       <button type="submit" (click)="onSubmitClick()">Buy</button>
     </form>
   `,
 })
 export class BuyAssetFormComponent {
-  protected readonly form = new FormGroup({
-    symbol: new FormControl("AAPL", [Validators.required]),
-    price_per_unit: new FormControl(150, [Validators.required]),
-    units: new FormControl(100, [Validators.required]),
-  });
   public buy = output<CreateTransactionDto>();
+
+  private loadSymbolsService = inject(LoadSymbolsService);
+
+  protected assetType = model<AssetType>("stock");
+
+  protected symbols = this.loadSymbolsService.value;
+
+  protected symbol: ModelSignal<string> = model("");
+  protected pricePerUnit = signal(Math.floor(Math.random() * 100) + 1);
+  protected units: ModelSignal<number> = model(1);
   public onSubmitClick(): void {
     const transaction: CreateTransactionDto = {
-      ...(this.form.value as unknown as CreateTransactionDto),
       type: "buy",
-      asset_type: "stock",
+      asset_type: this.assetType(),
+      symbol: this.symbol(),
+      units: this.units(),
+      price_per_unit: this.pricePerUnit(),
     };
-    this.buy.emit(transaction);
+    console.log(transaction);
+    // this.buy.emit(transaction);
   }
 }
