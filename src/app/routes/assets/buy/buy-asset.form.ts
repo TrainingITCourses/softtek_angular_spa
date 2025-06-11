@@ -92,8 +92,8 @@ export class BuyAssetFormComponent {
       price_per_unit: this.pricePerUnit(),
     };
     console.log(transaction);
+    this.buy.emit(transaction);
     this.units.set(1);
     this.symbol.set(this.firstSymbol());
-    // this.buy.emit(transaction);
   }
 }

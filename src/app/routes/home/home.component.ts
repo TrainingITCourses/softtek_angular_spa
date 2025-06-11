@@ -25,7 +25,8 @@ import { Portfolio } from "../../shared/portfolio/portfolio.type";
             <tr>
               <th>Name</th>
               <th style="text-align: right">Quantity</th>
-              <th style="text-align: right">Price</th>
+              <th style="text-align: right">Buy Price</th>
+              <th style="text-align: right">Last Price</th>
               <th style="text-align: right">Value</th>
             </tr>
           </thead>
@@ -40,14 +41,17 @@ import { Portfolio } from "../../shared/portfolio/portfolio.type";
                 {{ asset.average_price | currency }}
               </td>
               <td style="text-align: right">
-                {{ asset.average_price * asset.units | currency }}
+                {{ asset.last_price | currency }}
+              </td>
+              <td style="text-align: right">
+                {{ asset.last_price * asset.units | currency }}
               </td>
             </tr>
             }
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="3">Total</td>
+              <td colspan="4">Total</td>
               <td style="text-align: right">
                 {{ assetsValue() | currency }}
               </td>

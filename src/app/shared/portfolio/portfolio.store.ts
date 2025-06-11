@@ -15,7 +15,7 @@ export class PortfolioStore {
 
   public assetsValue = computed(() =>
     this.portfolio().assets.reduce(
-      (acc, asset) => acc + asset.average_price * asset.units,
+      (acc, asset) => acc + asset.last_price * asset.units,
       0
     )
   );

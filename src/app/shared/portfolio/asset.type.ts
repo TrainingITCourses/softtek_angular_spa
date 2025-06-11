@@ -5,5 +5,6 @@ export type Asset = {
   symbol: string;
   units: number;
   average_price: number;
+  last_price: number;
   lastUpdated: Date;
 };

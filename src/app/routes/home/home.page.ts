@@ -1,15 +1,15 @@
 import { Component, computed, effect, inject } from "@angular/core";
 import { PageComponent } from "../../shared/page.component";
+import { LoadPortfolioService } from "../../shared/portfolio/load-portfolio.service";
 import { PortfolioStore } from "../../shared/portfolio/portfolio.store";
 import { Portfolio } from "../../shared/portfolio/portfolio.type";
 import { ResourceComponent } from "../../shared/resource.component";
 import { CreatePortfolioForm } from "./create-portfolio.form";
 import { CreatePortfolioService } from "./create-portfolio.service";
 import { HomeComponent } from "./home.component";
-import { HomeStoreService } from "./home.store.service";
 
 @Component({
-  providers: [CreatePortfolioService],
+  providers: [CreatePortfolioService, LoadPortfolioService],
   imports: [
     PageComponent,
     ResourceComponent,
@@ -38,10 +38,10 @@ import { HomeStoreService } from "./home.store.service";
   `,
 })
 export default class HomePage {
-  private readonly homeStore = inject(HomeStoreService);
+  private readonly loadPortfolioService = inject(LoadPortfolioService);
   private createPortfolioService = inject(CreatePortfolioService);
   private readonly portfolioStore = inject(PortfolioStore);
-  protected portfolioResource = this.homeStore.portfolioResource;
+  protected portfolioResource = this.loadPortfolioService.portfolioResource;
   protected portfolio = this.portfolioStore.portfolio;
   protected netValue = this.portfolioStore.netValue;
   protected assetsValue = this.portfolioStore.assetsValue;
