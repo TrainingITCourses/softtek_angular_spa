@@ -1,4 +1,11 @@
 {
+  "editor.codeActionsOnSave": {
+
+  },
+  "editor.formatOnSave": true,
+
+
+
   "github.copilot.chat.codeGeneration.instructions": [
     {
       "file": ".ai/rules/clean.code.rules.md"

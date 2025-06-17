@@ -1,11 +1,8 @@
-import {
-  HttpEvent,
-  HttpInterceptorFn,
-  HttpResponse,
-} from "@angular/common/http";
+import { HttpEvent, HttpInterceptorFn, HttpResponse } from "@angular/common/http";
 import { inject } from "@angular/core";
 import { of } from "rxjs";
 import { filter, tap } from "rxjs/operators";
+
 import { CacheService } from "../shared/cache.service";
 import { LogService } from "../shared/log/log.service";
 
@@ -18,10 +15,14 @@ export const cacheInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   const cache: CacheService = inject(CacheService);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const x: any = 9;
+  // x = 9;
+
   const log: LogService = inject(LogService);
 
   const cachedResponse: HttpResponse<unknown> | undefined = cache.get(
-    req.url
+    req.url,
   ) as HttpResponse<unknown>;
 
   if (cachedResponse) {
@@ -32,6 +33,6 @@ export const cacheInterceptor: HttpInterceptorFn = (req, next) => {
     filter((event: HttpEvent<unknown>) => event instanceof HttpResponse),
     tap((event: HttpResponse<unknown>) => {
       cache.set(req.url, event);
-    })
+    }),
   );
 };
