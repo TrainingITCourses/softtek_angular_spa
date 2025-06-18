@@ -20,7 +20,7 @@ import { ThemeToggleComponent } from "./theme-toggle.component";
         </ul>
         <ul>
           <li>
-            <a [routerLink]="['stocks']">Stocks</a>
+            <a [routerLink]="['stocks']" [queryParams]="{ st: 'AAPL' }">Stocks</a>
           </li>
           <li>
             <app-portfolio-summary />
