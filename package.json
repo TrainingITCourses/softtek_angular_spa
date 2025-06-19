@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npm run chrome && ng serve",
     "build": "ng build",
     "format": "prettier ./src",
     "lint": "eslint ./src",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "chrome": "start chrome -incognito -auto-open-devtools-for-tabs http://localhost:4200"
   },
   "private": true,
   "dependencies": {
